@@ -21,6 +21,7 @@
 		5184690819C6496A00243F0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518468EA19C6496900243F0B /* UIKit.framework */; };
 		5184691019C6496A00243F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5184690E19C6496A00243F0B /* InfoPlist.strings */; };
 		5184691219C6496A00243F0B /* Sudoku_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691119C6496A00243F0B /* Sudoku_GridTests.m */; };
+		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,13 +47,15 @@
 		518468F619C6496A00243F0B /* KFAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFAMAppDelegate.m; sourceTree = "<group>"; };
 		518468F919C6496A00243F0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		518468FB19C6496A00243F0B /* KFAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFAMViewController.h; sourceTree = "<group>"; };
-		518468FC19C6496A00243F0B /* KFAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFAMViewController.m; sourceTree = "<group>"; };
+		518468FC19C6496A00243F0B /* KFAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		518468FE19C6496A00243F0B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5184690419C6496A00243F0B /* Sudoku GridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sudoku GridTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5184690519C6496A00243F0B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5184690D19C6496A00243F0B /* Sudoku GridTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sudoku GridTests-Info.plist"; sourceTree = "<group>"; };
 		5184690F19C6496A00243F0B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5184691119C6496A00243F0B /* Sudoku_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sudoku_GridTests.m; sourceTree = "<group>"; };
+		5184691B19C6499300243F0B /* KFAMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KFAMGridView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		5184691C19C6499300243F0B /* KFAMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				518468F519C6496A00243F0B /* KFAMAppDelegate.h */,
+				5184691B19C6499300243F0B /* KFAMGridView.h */,
+				5184691C19C6499300243F0B /* KFAMGridView.m */,
 				518468F619C6496A00243F0B /* KFAMAppDelegate.m */,
 				518468F819C6496A00243F0B /* Main.storyboard */,
 				518468FB19C6496A00243F0B /* KFAMViewController.h */,
@@ -251,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				518468FD19C6496A00243F0B /* KFAMViewController.m in Sources */,
+				5184691D19C6499300243F0B /* KFAMGridView.m in Sources */,
 				518468F319C6496A00243F0B /* main.m in Sources */,
 				518468F719C6496A00243F0B /* KFAMAppDelegate.m in Sources */,
 			);
