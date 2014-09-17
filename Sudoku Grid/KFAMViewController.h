@@ -2,8 +2,8 @@
 //  KFAMViewController.h
 //  Sudoku Grid
 //
-//  Created by Katharine Finlay on 9/14/14.
-//  Copyright (c) 2014 Kate Finlay, Alejandro Mendoza. All rights reserved.
+//  Created by John Park and Alejandro Mendoza on 9/16/14.
+//  Copyright (c) 2014 John Park, Alejandro Mendoza. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
