@@ -10,11 +10,6 @@
 
 @interface KFAMGridView : UIView
 
-- (void)makeButtonsWithFrame:(CGRect)frame;
-
-- (UIButton*)getCellWithRow:(int)row
-                     andCol:(int)col;
-
 - (void)setValueForCellAtRow:(int)row
                       andCol:(int)col
                    withValue:(int)value;

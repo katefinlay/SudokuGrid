@@ -19,8 +19,7 @@
 @implementation KFAMGridView
 
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self makeButtonsWithFrame:frame];
@@ -28,104 +27,100 @@
     return self;
 }
 
--(void)setAction:(SEL)action withTarget:(id)target
-{
+-(void)setAction:(SEL)action withTarget:(id)target {
     _target = target;
     _action = action;
 }
 
-- (void)buttonPressed:(id)sender
-{
+- (void)buttonPressed:(id)sender {
     UIButton* button = (UIButton*) sender;
-    //NSLog(@"You pressed the button at row %d, column %d!", [button tag]/9, [button tag]%9);
     NSNumber* num = [NSNumber numberWithInteger:[button tag]];
     [_target performSelector:_action withObject:num];
 }
 
-
-
-
-- (void)makeButtonsWithFrame:(CGRect)frame
-{
+- (void)makeButtonsWithFrame:(CGRect)frame {
     _cells = [[NSMutableArray alloc] initWithCapacity:9];
-    // create grid frame
-    CGFloat x = CGRectGetWidth(frame)*.1;
-    CGFloat y = CGRectGetHeight(frame)*.1;
-    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8+.03*x+.03*y;
-    
-    CGRect gridFrame = CGRectMake(x, y, size, size);
-    CGFloat offset = .11*size;
+
+    // Each button is 1/12 of the total frame size, the remaining 1/6 is divided between
+    // large and small boundaries. Large boundaries are 1/24 of the total frame and small
+    // boundaries are 1/72 of the total frame area.
+    const CGFloat numDivisions = 12.0;
+    CGFloat buttonSize = frame.size.width/numDivisions;
+    CGFloat largeBoundary = frame.size.width/(numDivisions*2);
+    CGFloat smallBoundary = frame.size.width/(numDivisions*6);
     
     //create grid view
     self.backgroundColor = [UIColor blackColor];
     int currentTag = 0;
-    float yoffsetToAdd = 0;
+    CGFloat yOffset = 0.0;
     
     for (int r = 0; r < 9; r++) {
-        float xoffsetToAdd = 0;
+        CGFloat xOffset = 0.0;
         NSMutableArray* row = [[NSMutableArray alloc] initWithCapacity:9];
-        if (r%3 == 0)
-        {
-            yoffsetToAdd+=.01*size;
+        
+        if (r % 3 == 0) {
+            yOffset = yOffset + largeBoundary;
+        } else {
+            yOffset = yOffset + smallBoundary;
         }
+        
         for (int c = 0; c < 9; c++) {
-            if (c%3 == 0 ) {
-                xoffsetToAdd+=.01*size;
+            if (c % 3 == 0 ) {
+                xOffset = xOffset + largeBoundary;
+            } else {
+                xOffset = xOffset + smallBoundary;
             }
-            //createbutton
-            UIButton* button;
-            CGFloat buttonSize = size/10.0;
-            CGRect buttonFrame = CGRectMake(.01*size+r*offset+yoffsetToAdd, .01*size+c*offset+xoffsetToAdd, buttonSize, buttonSize);
-            button = [[UIButton alloc] initWithFrame:buttonFrame];
-            button.backgroundColor = [UIColor whiteColor];
-            [self addSubview:button];
             
-            // give button correct attributes
-            [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside]; //make own version of this
-            [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-            button.showsTouchWhenHighlighted = YES;
-            button.tag = currentTag;
+            UIButton* button;
+            CGRect buttonFrame = CGRectMake(xOffset, yOffset, buttonSize, buttonSize);
+            button = [[UIButton alloc] initWithFrame:buttonFrame];
+            [self createButton:button withTag:currentTag andSize:buttonSize];
+            
             currentTag++;
             [row insertObject:button atIndex:c];
+            xOffset = xOffset + buttonSize;
         }
         [_cells insertObject: row atIndex: r];
+        yOffset = yOffset + buttonSize;
     }
+}
+
+- (void)createButton:(UIButton*) button
+                    withTag:(int)tag
+                    andSize:(int)buttonSize {
+    //createbutton
+    button.backgroundColor = [UIColor whiteColor];
+    [self addSubview:button];
+    
+    // give button correct attributes
+    [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    button.showsTouchWhenHighlighted = YES;
+    button.tag = tag;
 }
 
 
 - (UIButton*)getCellWithRow:(int)row
-                     andCol:(int)col
-{
+                     andCol:(int)col {
     return _cells[row][col];
 }
 
 
 - (void)setValueForCellAtRow:(int)row
                       andCol:(int)col
-                   withValue:(int)value
-{
+                   withValue:(int)value {
     UIButton* cell = [self getCellWithRow:row andCol:col];
     
     //retrieve the proper number
     NSString* numToFill;
     if (value == 0) {
         numToFill = @"";
-    }
-    else {
+    } else {
         numToFill = [NSString stringWithFormat:@"%d", value];
     }
     
     [cell setTitle:numToFill forState:UIControlStateNormal];
 }
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end
