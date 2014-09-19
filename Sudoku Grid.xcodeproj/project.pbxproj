@@ -22,6 +22,8 @@
 		5184691019C6496A00243F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5184690E19C6496A00243F0B /* InfoPlist.strings */; };
 		5184691219C6496A00243F0B /* Sudoku_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691119C6496A00243F0B /* Sudoku_GridTests.m */; };
 		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
+		E873DABF19CCC2FF003C9533 /* KFAMGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E873DABE19CCC2FF003C9533 /* KFAMGridModel.m */; };
+		E873DAC219CCC315003C9533 /* KFAMNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E873DAC119CCC315003C9533 /* KFAMNumPadView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,10 @@
 		5184691119C6496A00243F0B /* Sudoku_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sudoku_GridTests.m; sourceTree = "<group>"; };
 		5184691B19C6499300243F0B /* KFAMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KFAMGridView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5184691C19C6499300243F0B /* KFAMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E873DABD19CCC2FF003C9533 /* KFAMGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMGridModel.h; sourceTree = "<group>"; };
+		E873DABE19CCC2FF003C9533 /* KFAMGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridModel.m; sourceTree = "<group>"; };
+		E873DAC019CCC315003C9533 /* KFAMNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMNumPadView.h; sourceTree = "<group>"; };
+		E873DAC119CCC315003C9533 /* KFAMNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMNumPadView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				518468F519C6496A00243F0B /* KFAMAppDelegate.h */,
+				E873DABD19CCC2FF003C9533 /* KFAMGridModel.h */,
+				E873DABE19CCC2FF003C9533 /* KFAMGridModel.m */,
+				E873DAC019CCC315003C9533 /* KFAMNumPadView.h */,
+				E873DAC119CCC315003C9533 /* KFAMNumPadView.m */,
 				5184691B19C6499300243F0B /* KFAMGridView.h */,
 				5184691C19C6499300243F0B /* KFAMGridView.m */,
 				518468F619C6496A00243F0B /* KFAMAppDelegate.m */,
@@ -257,8 +267,10 @@
 			files = (
 				518468FD19C6496A00243F0B /* KFAMViewController.m in Sources */,
 				5184691D19C6499300243F0B /* KFAMGridView.m in Sources */,
+				E873DAC219CCC315003C9533 /* KFAMNumPadView.m in Sources */,
 				518468F319C6496A00243F0B /* main.m in Sources */,
 				518468F719C6496A00243F0B /* KFAMAppDelegate.m in Sources */,
+				E873DABF19CCC2FF003C9533 /* KFAMGridModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +477,7 @@
 				5184691719C6496A00243F0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5184691819C6496A00243F0B /* Build configuration list for PBXNativeTarget "Sudoku GridTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +486,7 @@
 				5184691A19C6496A00243F0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

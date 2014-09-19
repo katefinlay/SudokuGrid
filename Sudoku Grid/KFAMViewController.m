@@ -7,6 +7,8 @@
 
 #import "KFAMViewController.h"
 #import "KFAMGridView.h"
+#import "KFAMGridModel.h"
+#import "KFAMNumPadView.h"
 
 // int array we give to gridview to build the initial grid
 int initialGrid[81] =
@@ -20,8 +22,11 @@ int initialGrid[81] =
     0,0,0,0,5,4,0,1,0,
     7,3,0,0,0,0,0,0,0};
 
+int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
+
 @interface KFAMViewController() {
     KFAMGridView* _grid;
+    KFAMNumPadView* _numPad;
 }
 
 @end
@@ -58,6 +63,17 @@ int initialGrid[81] =
         }
     }
     [self.view addSubview:_grid];
+    
+    // Initialize numpad
+    
+    _numPad = [[KFAMNumPadView alloc] initWithFrame:self.view.frame];
+    [_numPad setAction:@selector(numPadPressed:) withTarget:self];
+    for (int i = 0; i < 9; i++) {
+        int toInsert = numPadArray[i];
+        [_numPad setValueAtIndex:i withValue:toInsert];
+    }
+    
+    [self.view addSubview:_numPad];
 }
 
 // Gets information from gridview and displays which button has been
@@ -65,6 +81,11 @@ int initialGrid[81] =
 -(void)buttonPressed:(NSNumber*)buttonTag {
     int tag = [buttonTag intValue];
     NSLog(@"You pressed the button at row %d, column %d!", tag%9 + 1,tag/9 + 1);
+}
+
+-(void)numPadPressed:(NSNumber*)buttonTag {
+    int tag = [buttonTag intValue];
+    NSLog(@"You selected button number %d", tag + 1);
 }
 
 // Checks if memory was received.
