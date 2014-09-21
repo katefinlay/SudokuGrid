@@ -37,11 +37,12 @@
 
 // This returns information to the viewcontroller
 // about which button was pressed
-- (void)buttonPressed:(id)sender {
+- (void)cellPressed:(id)sender {
     // take the tag of button selected and send it back to the
     // target (which is viewcontroller)
     UIButton* button = (UIButton*) sender;
     NSNumber* tag = [NSNumber numberWithInteger:[button tag] ];
+    NSLog(@"here");
     [_target performSelector:_action withObject:tag];
 }
 
@@ -87,8 +88,7 @@
             [self addSubview:button];
             
             // give button correct attributes
-            [button addTarget:self action:@selector(buttonPressed:)
-             forControlEvents:UIControlEventTouchUpInside]; //make own version of this
+            [button addTarget:self action:@selector(cellPressed:) forControlEvents:UIControlEventTouchUpInside]; //make own version of this
             [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             button.showsTouchWhenHighlighted = YES;

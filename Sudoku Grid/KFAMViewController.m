@@ -27,6 +27,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 @interface KFAMViewController() {
     KFAMGridView* _grid;
     KFAMNumPadView* _numPad;
+    KFAMGridModel* _gridModel;
 }
 
 @end
@@ -46,6 +47,8 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 - (void)viewDidLoad {
     // make sure things loaded correctly
     [super viewDidLoad];
+    
+    [_gridModel initializeGrid:initialGrid];
     
     // Make the main background color white
     self.view.backgroundColor = [UIColor whiteColor];
@@ -67,7 +70,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     // Initialize numpad
     
     _numPad = [[KFAMNumPadView alloc] initWithFrame:self.view.frame];
-    [_numPad setAction:@selector(numPadPressed:) withTarget:self];
+    //[_numPad setAction:@selector(numPadPressed:) withTarget:self];
     for (int i = 0; i < 9; i++) {
         int toInsert = numPadArray[i];
         [_numPad setValueAtIndex:i withValue:toInsert];
@@ -83,10 +86,11 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     NSLog(@"You pressed the button at row %d, column %d!", tag%9 + 1,tag/9 + 1);
 }
 
--(void)numPadPressed:(NSNumber*)buttonTag {
-    int tag = [buttonTag intValue];
-    NSLog(@"You selected button number %d", tag + 1);
-}
+//-(void)numPadPressed:(NSNumber*)buttonTag {
+//    int tag = [buttonTag intValue];
+//    NSLog(@"You selected button number %d", tag + 1);
+//}
+
 
 // Checks if memory was received.
 - (void)didReceiveMemoryWarning {

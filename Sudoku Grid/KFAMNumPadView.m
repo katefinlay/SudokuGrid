@@ -40,6 +40,19 @@
     UIButton* button = (UIButton*) sender;
     NSNumber* tag = [NSNumber numberWithInteger:[button tag] ];
     [_target performSelector:_action withObject:tag];
+    
+    // unhighlight all currently highlighted buttons and then highlight pressed button
+    [self unhighlightAll];
+    [(id)sender setBackgroundColor:[UIColor grayColor]];
+}
+
+// helper method to unhighlight all currently highlighted buttons
+-(void)unhighlightAll
+{
+    for (int i = 0; i < 9; i++) {
+        UIButton *button = _buttons[i];
+        [button setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 // 

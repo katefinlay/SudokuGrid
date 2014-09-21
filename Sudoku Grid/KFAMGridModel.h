@@ -10,4 +10,8 @@
 
 @interface KFAMGridModel : NSObject
 
+-(void)initializeGrid:(int[])initialArray;
+
+-(int)getValueAtRow:row andColumn:column;
+
 @end
