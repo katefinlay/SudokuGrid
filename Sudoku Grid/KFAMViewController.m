@@ -71,7 +71,7 @@
     NSLog(@"You pressed the button at row %d, column %d!", row,col);
     
     int currentNumSelected = [_numPad getCurrentNumSelected];
-    BOOL isMutable = [_gridModel isMutableforRow:row andCol:col];
+    BOOL isMutable = [_gridModel isMutableForRow:row andCol:col];
     BOOL isValid = [_gridModel isValidValue:currentNumSelected forRow:row andCol:col];
     
     if (isMutable && isValid) {

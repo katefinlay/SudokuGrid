@@ -554,6 +554,7 @@
 				51F2CDC819CE20EC00871880 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

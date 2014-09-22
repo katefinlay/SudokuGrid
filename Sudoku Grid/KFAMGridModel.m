@@ -34,7 +34,7 @@ int currentGrid[81] =
 
 - (int)getNumberWithRow:(int)row
                  andCol:(int)col {
-    return initialGrid[row*9 + col];
+    return currentGrid[row*9 + col];
 }
 
 - (BOOL)isValidValue:(int)val
@@ -69,8 +69,9 @@ int currentGrid[81] =
     return true;
 }
 
-- (BOOL)isMutableforRow:(int)row
+- (BOOL)isMutableForRow:(int)row
               andCol:(int)col {
+    
     if (initialGrid[row*9 + col] == 0) {
         return true;
     }

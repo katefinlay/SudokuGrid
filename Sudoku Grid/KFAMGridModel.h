@@ -16,7 +16,7 @@
                    forRow:(int)row
                    andCol:(int)col;
 
-- (BOOL)isMutableforRow:(int)row
+- (BOOL)isMutableForRow:(int)row
               andCol:(int)col;
 
 - (void)inputNumber:(int)newNum
