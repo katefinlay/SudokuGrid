@@ -10,4 +10,6 @@
 
 @interface KFAMNumPadView : UIView
 
+-(int) getCurrentNumSelected;
+
 @end

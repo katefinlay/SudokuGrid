@@ -10,4 +10,16 @@
 
 @interface KFAMGridModel : NSObject
 
+- (int)getNumberWithRow:(int)row
+                 andCol:(int)col;
+- (BOOL)isValidValue:(int)val
+                   forRow:(int)row
+                   andCol:(int)col;
+
+- (BOOL)isMutableforRow:(int)row
+              andCol:(int)col;
+
+- (void)inputNumber:(int)newNum
+              atRow:(int)row
+             andCol:(int)col;
 @end

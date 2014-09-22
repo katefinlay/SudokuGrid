@@ -16,4 +16,8 @@
 
 -(void)setAction:(SEL)action withTarget:(id)target;
 
+- (void)displayNumber:(int)newNum
+                atRow:(int)row
+               andCol:(int)col;
+
 @end
