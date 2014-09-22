@@ -19,8 +19,8 @@
 
 // Inserts the designated value into the correct
 // button given a row and column
-- (void)setValueForCellAtRow:(int)row
-                      andCol:(int)col
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
                    withValue:(int)value;
 
 // Defines viewcontroller as the target class to return

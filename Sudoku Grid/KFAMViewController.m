@@ -10,7 +10,6 @@
 #import "KFAMGridModel.h"
 #import "KFAMNumPadView.h"
 
-// int array we give to gridview to build the initial grid
 int initialGrid[81] =
 {1,0,3,5,0,0,0,0,9,
     0,0,2,4,6,0,0,7,0,
@@ -38,7 +37,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 // Returns the vlue in the initial grid
 - (int)getNumberWithRow:(int)row
                  andCol:(int)col {
-    return initialGrid[row*9 + col];
+    return initialGrid[row*8 + col];
 }
 
 
@@ -48,11 +47,12 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     // make sure things loaded correctly
     [super viewDidLoad];
     
+    _gridModel = [[KFAMGridModel alloc] init];
     [_gridModel initializeGrid:initialGrid];
     
     // Make the main background color white
     self.view.backgroundColor = [UIColor whiteColor];
-	
+    
     // Create sudoku board and place on the main view
     _grid = [[KFAMGridView alloc] initWithFrame:self.view.frame];
     [_grid setAction:@selector(buttonPressed:) withTarget:self];
@@ -62,20 +62,22 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     for (int r = 0; r<9; r++) {
         for (int c = 0; c<9; c++) {
             int toInsert = [self getNumberWithRow:c andCol:r];
-            [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+            [_grid setValueForCellAtCol:r andRow:c withValue:toInsert];
         }
     }
     [self.view addSubview:_grid];
     
     // Initialize numpad
     
-    _numPad = [[KFAMNumPadView alloc] initWithFrame:self.view.frame];
-    //[_numPad setAction:@selector(numPadPressed:) withTarget:self];
+    CGFloat x = CGRectGetWidth(self.view.frame);
+    CGFloat y = CGRectGetHeight(self.view.frame);
+    UIView *numPadContainer = [[UIView alloc] initWithFrame:CGRectMake(x*.1,y*.8,x*1.035,y)];
+    _numPad = [[KFAMNumPadView alloc] initWithFrame:numPadContainer.frame];
     for (int i = 0; i < 9; i++) {
         int toInsert = numPadArray[i];
         [_numPad setValueAtIndex:i withValue:toInsert];
     }
-    
+    [_numPad setAction:@selector(numPadPressed:) withTarget:self];
     [self.view addSubview:_numPad];
 }
 
@@ -83,13 +85,35 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 // pressed on the console.
 -(void)buttonPressed:(NSNumber*)buttonTag {
     int tag = [buttonTag intValue];
-    NSLog(@"You pressed the button at row %d, column %d!", tag%9 + 1,tag/9 + 1);
+    int row = tag%9;
+    int col = tag/9;
+    NSLog(@"You pressed the button at row %d, column %d!", row + 1, col + 1);
+    
+    // To identify whether a number can be inserted in the selected cell
+    BOOL canInsert = [_gridModel canInsertAtRow:row andColumn:col];
+    
+    // If cell is not an initial value, insert the number selected on the numpad
+    if (canInsert == true) {
+        int numPadSelected = [_numPad numSelected]+1; // increment by 1 because the tag index starts at 0.
+        
+        [_gridModel setValueAtRow:row column:col withValue:numPadSelected];
+        
+        [_grid setValueForCellAtCol:col andRow:row withValue:numPadSelected];
+        
+        NSLog(@"You inserted %d at row %d, column %d", numPadSelected, row, col);
+    }
+    // If cell is an initial value, cannot insert
+    else {
+        NSLog(@"You cannot insert into cells with initial values.");
+    }
 }
 
-//-(void)numPadPressed:(NSNumber*)buttonTag {
-//    int tag = [buttonTag intValue];
-//    NSLog(@"You selected button number %d", tag + 1);
-//}
+// Gets information from numPadView and displays which button has been
+// pressed on the console.
+-(void)numPadPressed:(NSNumber*)buttonTag {
+    int tag = [buttonTag intValue];
+    NSLog(@"You selected button number %d", tag + 1);
+}
 
 
 // Checks if memory was received.

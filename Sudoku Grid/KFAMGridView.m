@@ -42,7 +42,6 @@
     // target (which is viewcontroller)
     UIButton* button = (UIButton*) sender;
     NSNumber* tag = [NSNumber numberWithInteger:[button tag] ];
-    NSLog(@"here");
     [_target performSelector:_action withObject:tag];
 }
 
@@ -104,8 +103,8 @@
     }
 }
 
-// Returns the button in the NSMutable array of all the
-// buttons placed on the board
+// Returns the button in the NSMutable array at the
+// given row and column
 - (UIButton*)getCellWithRow:(int)row
                      andCol:(int)col {
     return _cells[row][col];
@@ -113,10 +112,10 @@
 
 // Inserts the designated value into the correct
 // button given a row and column
-- (void)setValueForCellAtRow:(int)row
-                      andCol:(int)col
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
                    withValue:(int)value {
-    UIButton* cell = [self getCellWithRow:row andCol:col];
+    UIButton* cell = [self getCellWithRow:col andCol:row];
     
     //retrieve the proper number
     NSString* numToFill;

@@ -10,8 +10,16 @@
 
 @interface KFAMGridModel : NSObject
 
+// Initialize grid with information from view controller
 -(void)initializeGrid:(int[])initialArray;
 
--(int)getValueAtRow:row andColumn:column;
+// Return the value at a row and column of the cell array
+-(int)getValueAtRow:(int)row andColumn:(int)column;
+
+// Identify whether a number in the grid is an initial value or not
+-(BOOL)canInsertAtRow:(int)row andColumn:(int)col;
+
+// Set the value at a cell to be val
+-(void)setValueAtRow:(int)row column:(int)col withValue:(int)val;
 
 @end

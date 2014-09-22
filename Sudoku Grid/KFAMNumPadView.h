@@ -26,4 +26,7 @@
 // information about the Sudoku board to.
 -(void)setAction:(SEL)action
       withTarget:(id)target;
+
+-(int)numSelected;
+
 @end
