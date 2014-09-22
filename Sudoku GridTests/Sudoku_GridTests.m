@@ -32,20 +32,20 @@
     [super tearDown];
 }
 
-//   {1,0,3,5,0,0,0,0,9,
-//    0,0,2,4,6,0,0,7,0,
-//    2,4,0,1,0,0,0,0,0,
-//    0,0,0,0,2,6,7,0,8,
-//    0,0,1,0,7,0,9,4,0,
-//    0,6,4,0,1,0,0,0,2,
-//    5,0,0,9,0,1,6,0,0,
-//    0,0,0,0,5,4,0,1,0,
-//    7,3,0,0,0,0,0,0,0};
-
 // some tests for GridModel
 - (void)testValues
 {
-    // some tests for canInsert
+    // some tests for inserting into a certain row with consistency
+    XCTAssertTrue([_model canInsertValue:1 atRow:0]==false, @"Cannot insert");
+    XCTAssertTrue([_model canInsertValue:1 atRow:1]==true, @"Can insert");
+    
+    // some tests for inserting into a certain column with consistency
+    XCTAssertTrue([_model canInsertValue:1 atCol:0]==false, @"Cannot insert");
+    XCTAssertTrue([_model canInsertValue:5 atCol:1]==true, @"Can insert");
+    
+    // some tests for inserting into a certain subgrid with consistency
+    XCTAssertTrue([_model canInsertIntoSubgrid:1 atRow:0 andCol:2]==false, @"Cannot insert");
+    XCTAssertTrue([_model canInsertIntoSubgrid:6 atRow:0 andCol:2]==true, @"Can insert");
     
     // some tests for getValueAtRowandColumn
     XCTAssertTrue([_model getValueAtRow:0 andColumn:0]==1, @"Testing edge case");

@@ -45,8 +45,8 @@ int _testArray[81] =
 {
     for (int r=0; r<9; r++) {
         for (int c=0; c<9; c++) {
-            _cells[c][r] = initialArray[r*8 + c];
-            _initialGrid[c][r] = initialArray[r*8 + c];
+            _cells[c][r] = initialArray[r*9 + c];
+            _initialGrid[c][r] = initialArray[r*9 + c];
         }
     }
 }
@@ -98,93 +98,75 @@ int _testArray[81] =
 
 // Identify whather a number can be inserted at a certain subgrid
 -(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col  {
-    int subgrid = [self subgridOfRow:row andCol:col];
-    BOOL canInsert;
     
-    if (subgrid == 1) {
+    if (row < 3 && col < 3) {
         for (int c=0;c<3;c++) {
             for (int r=0;r<3;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    } else if (subgrid == 2) {
+    } else if (row < 3 && 2 < col && col < 6) {
         for (int c=3;c<6;c++) {
             for (int r=0;r<3;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    } else if (subgrid == 3) {
+    } else if (row < 3 && 5 < col) {
         for (int c=6;c<9;c++) {
             for (int r=0;r<3;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    } else if (subgrid == 4) {
+    } else if (2 < row && row < 6 && col < 3) {
         for (int c=0;c<3;c++) {
             for (int r=3;r<6;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    }  else if (subgrid == 5) {
+    }  else if (2 < row && row < 6 && 2 < col && col < 6) {
         for (int c=3;c<6;c++) {
             for (int r=3;r<6;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    }  else if (subgrid == 6) {
+    }  else if (2 < row && row < 6 && 5 < col) {
         for (int c=6;c<9;c++) {
             for (int r=3;r<6;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    } else if (subgrid == 7) {
+    } else if (5 < row && col < 3) {
         for (int c=0;c<3;c++) {
             for (int r=6;r<9;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
         }
-    } else if (subgrid == 8) {
+    } else if (5 < row && 2 < col && col < 6) {
         for (int c=3;c<6;c++) {
             for (int r=6;r<9;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
@@ -193,43 +175,40 @@ int _testArray[81] =
         for (int c=6;c<9;c++) {
             for (int r=6;r<9;r++) {
                 if (_cells[c][r] == value) {
-                    canInsert = false;
-                } else {
-                    canInsert = true;
+                    return false;
                 }
                 
             }
-        }
-    }
-    return canInsert;
+      }
+    } return true;
 }
 
--(int)subgridOfRow:(int)row andCol:(int)col {
-    if (row < 3) {
-        if (col < 3) {
-            return 1;
-        } else if (col < 6) {
-            return 2;
-        } else {
-            return 3;
-        }
-    } else if (row < 6) {
-        if (col < 3) {
-            return 4;
-        } else if (col < 6) {
-            return 5;
-        } else {
-            return 6;
-        }
-    } else {
-        if (col < 3) {
-            return 7;
-        } else if (col < 6) {
-            return 8;
-        } else {
-            return 9;
-        }
-    }
-}
+//-(int)subgridOfRow:(int)row andCol:(int)col inArray:(int[])array {
+//    if (row < 3) {
+//        if (col < 3) {
+//            return 1;
+//        } else if (col < 6) {
+//            return 2;
+//        } else {
+//            return 3;
+//        }
+//    } else if (row < 6) {
+//        if (col < 3) {
+//            return 4;
+//        } else if (col < 6) {
+//            return 5;
+//        } else {
+//            return 6;
+//        }
+//    } else {
+//        if (col < 3) {
+//            return 7;
+//        } else if (col < 6) {
+//            return 8;
+//        } else {
+//            return 9;
+//        }
+//    }
+//}
 
 @end
