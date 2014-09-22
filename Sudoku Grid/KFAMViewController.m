@@ -8,30 +8,20 @@
 
 #import "KFAMViewController.h"
 #import "KFAMGridView.h"
-
-int initialGrid[81] =
-   {1,0,3,5,0,0,0,0,9,
-    0,0,2,4,6,0,0,7,0,
-    2,4,0,1,0,0,0,0,0,
-    0,0,0,0,2,6,7,0,8,
-    0,0,1,0,7,0,9,4,0,
-    0,6,4,0,1,0,0,0,2,
-    5,0,0,9,0,1,6,0,0,
-    0,0,0,0,5,4,0,1,0,
-    7,3,0,0,0,0,0,0,0};
+#import "KFAMGridModel.h"
+#import "KFAMNumPadView.h"
 
 @interface KFAMViewController() {
     KFAMGridView* _grid;
+    KFAMGridModel* _gridModel;
+    KFAMNumPadView* _numPad;
 }
 
 @end
 
 @implementation KFAMViewController
 
-- (int)getNumberWithRow:(int)row
-                 andCol:(int)col {
-    return initialGrid[row*9 + col];
-}
+
 
 - (void)viewDidLoad {
     
@@ -46,28 +36,49 @@ int initialGrid[81] =
     CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8;
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
+    CGRect numPadFrame = CGRectMake(x, y + size + size*0.12, size, size*0.12);
 
     _grid = [[KFAMGridView alloc] initWithFrame:gridFrame];
+    _gridModel = [KFAMGridModel alloc];
+    _numPad = [[KFAMNumPadView alloc] initWithFrame:numPadFrame];
     
     [_grid setAction:@selector(buttonPressed:) withTarget:self];
     
     [self.view addSubview:_grid];
+    [self.view addSubview:_numPad];
     
     //set the initial values for the sudoku grid
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
-            int toInsert = [self getNumberWithRow:c andCol:r];
+            int toInsert = [_gridModel getNumberWithRow:c andCol:r];
             [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
         }
     }
     
+    //tests
+    //BOOL val = [_gridModel isValidValue:3 forRow:0 andCol:7];
+    
+    
 }
 
 -(void)buttonPressed:(NSNumber*)buttonTag {
-    int num = [buttonTag intValue];
     //The button tag is utilized to store the button number, from 1:81. To get
     //the row and column, divide by 9(row) and take the remainder(col).
-    NSLog(@"You pressed the button at row %d, column %d!", num/9,num%9);
+    int num = [buttonTag intValue];
+    int row = num/9;
+    int col = num%9;
+    
+    NSLog(@"You pressed the button at row %d, column %d!", row,col);
+    
+    int currentNumSelected = [_numPad getCurrentNumSelected];
+    BOOL isMutable = [_gridModel isMutableForRow:row andCol:col];
+    BOOL isValid = [_gridModel isValidValue:currentNumSelected forRow:row andCol:col];
+    
+    if (isMutable && isValid) {
+        [_gridModel inputNumber:currentNumSelected atRow:row andCol:col];
+        [_grid displayNumber:currentNumSelected atRow:row andCol:col];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

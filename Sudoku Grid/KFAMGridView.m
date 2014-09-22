@@ -106,6 +106,12 @@
     return _cells[row][col];
 }
 
+- (void)displayNumber:(int)newNum
+              atRow:(int)row
+             andCol:(int)col {
+    UIButton* currentButton = [self getCellWithRow:row andCol:col];
+    [currentButton setTitle:[NSString stringWithFormat:@"%d", newNum] forState:UIControlStateNormal];
+}
 
 - (void)setValueForCellAtRow:(int)row
                       andCol:(int)col

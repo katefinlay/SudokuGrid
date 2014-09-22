@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		51F2CDC619CE20E700871880 /* OCLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 51F2CDC919CE20EC00871880 /* Build configuration list for PBXAggregateTarget "OCLint" */;
+			buildPhases = (
+				51F2CDCB19CE217300871880 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = OCLint;
+			productName = OCLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		518468E719C6496900243F0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518468E619C6496900243F0B /* Foundation.framework */; };
 		518468E919C6496900243F0B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518468E819C6496900243F0B /* CoreGraphics.framework */; };
@@ -22,6 +36,8 @@
 		5184691019C6496A00243F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5184690E19C6496A00243F0B /* InfoPlist.strings */; };
 		5184691219C6496A00243F0B /* Sudoku_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691119C6496A00243F0B /* Sudoku_GridTests.m */; };
 		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
+		51F2CDCE19CE283100871880 /* KFAMGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDCD19CE283100871880 /* KFAMGridModel.m */; };
+		51F2CDD119CE302000871880 /* KFAMNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDD019CE302000871880 /* KFAMNumPadView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +72,10 @@
 		5184691119C6496A00243F0B /* Sudoku_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sudoku_GridTests.m; sourceTree = "<group>"; };
 		5184691B19C6499300243F0B /* KFAMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KFAMGridView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5184691C19C6499300243F0B /* KFAMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		51F2CDCC19CE283100871880 /* KFAMGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMGridModel.h; sourceTree = "<group>"; };
+		51F2CDCD19CE283100871880 /* KFAMGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridModel.m; sourceTree = "<group>"; };
+		51F2CDCF19CE302000871880 /* KFAMNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMNumPadView.h; sourceTree = "<group>"; };
+		51F2CDD019CE302000871880 /* KFAMNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMNumPadView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +136,13 @@
 			isa = PBXGroup;
 			children = (
 				518468F519C6496A00243F0B /* KFAMAppDelegate.h */,
+				51F2CDCF19CE302000871880 /* KFAMNumPadView.h */,
+				51F2CDD019CE302000871880 /* KFAMNumPadView.m */,
 				5184691B19C6499300243F0B /* KFAMGridView.h */,
 				5184691C19C6499300243F0B /* KFAMGridView.m */,
 				518468F619C6496A00243F0B /* KFAMAppDelegate.m */,
+				51F2CDCC19CE283100871880 /* KFAMGridModel.h */,
+				51F2CDCD19CE283100871880 /* KFAMGridModel.m */,
 				518468F819C6496A00243F0B /* Main.storyboard */,
 				518468FB19C6496A00243F0B /* KFAMViewController.h */,
 				518468FC19C6496A00243F0B /* KFAMViewController.m */,
@@ -167,6 +191,7 @@
 				518468DF19C6496900243F0B /* Sources */,
 				518468E019C6496900243F0B /* Frameworks */,
 				518468E119C6496900243F0B /* Resources */,
+				51F2CDCA19CE214700871880 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -225,6 +250,7 @@
 			targets = (
 				518468E219C6496900243F0B /* Sudoku Grid */,
 				5184690319C6496A00243F0B /* Sudoku GridTests */,
+				51F2CDC619CE20E700871880 /* OCLint */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +276,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		51F2CDCA19CE214700871880 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		51F2CDCB19CE217300871880 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source ~/.bash_profile\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\n\ncd ${TARGET_TEMP_DIR}\nif [ ! -f compile_commands.json ]; then\necho \"[*] compile_commands.json not found, possibly clean was performed\"\necho \"[*] starting xcodebuild to rebuild the project..\"\n# clean previous output\nif [ -f xcodebuild.log ]; then\nrm xcodebuild.log\nfi\n\ncd ${SRCROOT}\nxcodebuild clean\n\n#build xcodebuild.log\nxcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n#xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n\necho \"[*] transforming xcodebuild.log into compile_commands.json...\"\ncd ${TARGET_TEMP_DIR}\n#transform it into compile_commands.json\noclint-xcodebuild\n\necho \"[*] copy compile_commands.json to the project root...\"\ncp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\nfi\n\necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\noclint-json-compilation-database | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		518468DF19C6496900243F0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -257,8 +312,10 @@
 			files = (
 				518468FD19C6496A00243F0B /* KFAMViewController.m in Sources */,
 				5184691D19C6499300243F0B /* KFAMGridView.m in Sources */,
+				51F2CDD119CE302000871880 /* KFAMNumPadView.m in Sources */,
 				518468F319C6496A00243F0B /* main.m in Sources */,
 				518468F719C6496A00243F0B /* KFAMAppDelegate.m in Sources */,
+				51F2CDCE19CE283100871880 /* KFAMGridModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +503,20 @@
 			};
 			name = Release;
 		};
+		51F2CDC719CE20EC00871880 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		51F2CDC819CE20EC00871880 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -465,6 +536,7 @@
 				5184691719C6496A00243F0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5184691819C6496A00243F0B /* Build configuration list for PBXNativeTarget "Sudoku GridTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +545,16 @@
 				5184691A19C6496A00243F0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51F2CDC919CE20EC00871880 /* Build configuration list for PBXAggregateTarget "OCLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51F2CDC719CE20EC00871880 /* Debug */,
+				51F2CDC819CE20EC00871880 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
