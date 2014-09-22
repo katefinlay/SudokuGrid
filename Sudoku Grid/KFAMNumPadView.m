@@ -104,6 +104,10 @@
         
         currentTag++;
         
+        if (i == 0) {
+            [button setBackgroundColor:[UIColor grayColor]];
+        }
+        
         // insert the button
         [_buttons insertObject:button atIndex:i];
     }

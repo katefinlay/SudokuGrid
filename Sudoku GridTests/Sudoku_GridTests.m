@@ -32,12 +32,45 @@
     [super tearDown];
 }
 
+//   {1,0,3,5,0,0,0,0,9,
+//    0,0,2,4,6,0,0,7,0,
+//    2,4,0,1,0,0,0,0,0,
+//    0,0,0,0,2,6,7,0,8,
+//    0,0,1,0,7,0,9,4,0,
+//    0,6,4,0,1,0,0,0,2,
+//    5,0,0,9,0,1,6,0,0,
+//    0,0,0,0,5,4,0,1,0,
+//    7,3,0,0,0,0,0,0,0};
+
 // some tests for GridModel
 - (void)testValues
 {
-    [_model {1,0,3,5,0,0,0,0,9,0,0,2,4,6,0,0}];
-    XCTAssertTrue([_model getValueAtRow:0 andColumn:0]==1, @"Testing base case");
-    XC
+    // some tests for canInsert
+    
+    // some tests for getValueAtRowandColumn
+    XCTAssertTrue([_model getValueAtRow:0 andColumn:0]==1, @"Testing edge case");
+    XCTAssertTrue([_model getValueAtRow:9 andColumn:9]==0, @"Testing edge case");
+    XCTAssertTrue([_model getValueAtRow:4 andColumn:5]==0, @"Testing for number somewhere in the middle");
+    XCTAssertTrue([_model getValueAtRow:2 andColumn:7]==0, @"Testing for number somewhere in the middle");
+    
+    // some tests for canInsert (which keeps track of initial grid values), before inserting
+    // anything
+    XCTAssertTrue([_model canInsertAtRow:0 andColumn:0]==false, @"Cannot insert into initial value");
+    XCTAssertTrue([_model canInsertAtRow:9 andColumn:9]==true, @"Can insert into non-initial value");
+    
+    // some tests for inserting a value into a certain position
+    [_model setValueAtRow:0 column:0 withValue:9];
+    XCTAssertTrue([_model getValueAtRow:0 andColumn:0]==9, @"Testing edge case");
+    [_model setValueAtRow:9 column:9 withValue:5];
+    XCTAssertTrue([_model getValueAtRow:9 andColumn:9]==5, @"Testing edge case");
+    [_model setValueAtRow:0 column:0 withValue:6];
+    XCTAssertTrue([_model getValueAtRow:0 andColumn:0]==6, @"Testing inserting over inserted value");
+    [_model setValueAtRow:9 column:9 withValue:1];
+    XCTAssertTrue([_model getValueAtRow:9 andColumn:9]==1, @"Testing inserting over inserted value");
+    
+    // some tests for canInsert, after inserting new values
+    XCTAssertTrue([_model canInsertAtRow:0 andColumn:0]==false, @"Cannot insert into initial value");
+    XCTAssertTrue([_model canInsertAtRow:9 andColumn:9]==true, @"Can insert into a cell that has been inserted into");
 }
 
 @end

@@ -22,4 +22,13 @@
 // Set the value at a cell to be val
 -(void)setValueAtRow:(int)row column:(int)col withValue:(int)val;
 
+// Identify whether a number can be inserted at a certain row
+-(BOOL)canInsertValue:(int)value atRow:(int)row;
+
+// Identify whether a number can be inserted at a certain column
+-(BOOL)canInsertValue:(int)value atCol:(int)col;
+
+// Identify whether a number can be inserted at a certain subgrid
+-(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col;
+
 @end

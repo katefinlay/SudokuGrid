@@ -11,9 +11,7 @@
 #import "KFAMNumPadView.h"
 
 int initialGrid[81] =
-{1,0,3,5,0,0,0,0,9,
-    0,0,2,4,6,0,0,7,0,
-    2,4,0,1,0,0,0,0,0,
+{1,0,3,5,0,0,0,0,9,0,0,2,4,6,0,0,7,0,2,4,0,1,0,0,0,0,0,
     0,0,0,0,2,6,7,0,8,
     0,0,1,0,7,0,9,4,0,
     0,6,4,0,1,0,0,0,2,
@@ -37,7 +35,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 // Returns the vlue in the initial grid
 - (int)getNumberWithRow:(int)row
                  andCol:(int)col {
-    return initialGrid[row*8 + col];
+    return initialGrid[col*8 + row];
 }
 
 
@@ -61,8 +59,9 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     // to gridview to build the board.
     for (int r = 0; r<9; r++) {
         for (int c = 0; c<9; c++) {
-            int toInsert = [self getNumberWithRow:c andCol:r];
+            int toInsert = [self getNumberWithRow:r andCol:c];
             [_grid setValueForCellAtCol:r andRow:c withValue:toInsert];
+            NSLog(@"We are inserting %d at row %d, column %d", toInsert, r, c);
         }
     }
     [self.view addSubview:_grid];
@@ -87,18 +86,20 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     int tag = [buttonTag intValue];
     int row = tag%9;
     int col = tag/9;
+    int numPadSelected = [_numPad numSelected]+1; // increment by 1 because the tag index starts at 0.
     NSLog(@"You pressed the button at row %d, column %d!", row + 1, col + 1);
     
     // To identify whether a number can be inserted in the selected cell
-    BOOL canInsert = [_gridModel canInsertAtRow:row andColumn:col];
+    BOOL notInital = [_gridModel canInsertAtRow:row andColumn:col];
+    BOOL insertRow = [_gridModel canInsertValue:numPadSelected atRow:row];
+    BOOL insertCol = [_gridModel canInsertValue:numPadSelected atCol:col];
+    BOOL insertSubgrid = [_gridModel canInsertIntoSubgrid:numPadSelected atRow:row andCol:col];
     
     // If cell is not an initial value, insert the number selected on the numpad
-    if (canInsert == true) {
-        int numPadSelected = [_numPad numSelected]+1; // increment by 1 because the tag index starts at 0.
-        
+    if (notInital && insertRow && insertCol && insertSubgrid == true) {
         [_gridModel setValueAtRow:row column:col withValue:numPadSelected];
         
-        [_grid setValueForCellAtCol:col andRow:row withValue:numPadSelected];
+        [_grid setValueForCellAtCol:col andRow:row withValue:numPadSelected withColor:[UIColor blueColor]];
         
         NSLog(@"You inserted %d at row %d, column %d", numPadSelected, row, col);
     }

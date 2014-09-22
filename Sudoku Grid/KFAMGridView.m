@@ -88,7 +88,7 @@
             
             // give button correct attributes
             [button addTarget:self action:@selector(cellPressed:) forControlEvents:UIControlEventTouchUpInside]; //make own version of this
-            [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             button.showsTouchWhenHighlighted = YES;
             button.tag = currentTag;
@@ -116,6 +116,32 @@
                       andRow:(int)row
                    withValue:(int)value {
     UIButton* cell = [self getCellWithRow:col andCol:row];
+    
+    [cell setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [cell setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    //retrieve the proper number
+    NSString* numToFill;
+    
+    if (value == 0) {
+        numToFill = @"";
+    } else {
+        numToFill = [NSString stringWithFormat:@"%d", value];
+    }
+    [cell setTitle:numToFill forState:UIControlStateNormal];
+}
+
+// Inserts the designated value into the correct
+// button given a row and column
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
+                   withValue:(int)value
+                   withColor:(UIColor*)color
+{
+    UIButton* cell = [self getCellWithRow:col andCol:row];
+    
+    [cell setTitleColor:color forState:UIControlStateNormal];
+    [cell setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     //retrieve the proper number
     NSString* numToFill;

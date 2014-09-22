@@ -8,15 +8,41 @@
 
 #import "KFAMGridModel.h"
 
+// used provided initial array, just for testing purposes
+int _testArray[81] =
+{1,0,3,5,0,0,0,0,9,
+    0,0,2,4,6,0,0,7,0,
+    2,4,0,1,0,0,0,0,0,
+    0,0,0,0,2,6,7,0,8,
+    0,0,1,0,7,0,9,4,0,
+    0,6,4,0,1,0,0,0,2,
+    5,0,0,9,0,1,6,0,0,
+    0,0,0,0,5,4,0,1,0,
+    7,3,0,0,0,0,0,0,0};
+
 @implementation KFAMGridModel {
     int _cells[9][9];
     int _initialGrid[9][9];
 }
 
+// overriding intializers for test cases
+-(id)init
+{
+    return [self initWithArray:_testArray];
+}
+
+-(id)initWithArray:(int[])array
+{
+    self = [super init];
+    if (self) {
+        [self initializeGrid:array];
+    }
+    return self;
+}
+
 // Initialize grid with information from view controller
 -(void)initializeGrid:(int[])initialArray
 {
-    
     for (int r=0; r<9; r++) {
         for (int c=0; c<9; c++) {
             _cells[c][r] = initialArray[r*8 + c];
@@ -45,6 +71,164 @@
     }
     else {
         return false;
+    }
+}
+
+// Identify whether a number can be inserted at a certain row
+-(BOOL)canInsertValue:(int)value atRow:(int)row {
+    for (int i=0; i<9; i++)
+    {
+        if (_cells[i][row] == value) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Identify whether a number can be inserted at a certain column
+-(BOOL)canInsertValue:(int)value atCol:(int)col {
+    for (int i=0; i<9; i++)
+    {
+        if (_cells[col][i] == value) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Identify whather a number can be inserted at a certain subgrid
+-(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col  {
+    int subgrid = [self subgridOfRow:row andCol:col];
+    BOOL canInsert;
+    
+    if (subgrid == 1) {
+        for (int c=0;c<3;c++) {
+            for (int r=0;r<3;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    } else if (subgrid == 2) {
+        for (int c=3;c<6;c++) {
+            for (int r=0;r<3;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    } else if (subgrid == 3) {
+        for (int c=6;c<9;c++) {
+            for (int r=0;r<3;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    } else if (subgrid == 4) {
+        for (int c=0;c<3;c++) {
+            for (int r=3;r<6;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    }  else if (subgrid == 5) {
+        for (int c=3;c<6;c++) {
+            for (int r=3;r<6;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    }  else if (subgrid == 6) {
+        for (int c=6;c<9;c++) {
+            for (int r=3;r<6;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    } else if (subgrid == 7) {
+        for (int c=0;c<3;c++) {
+            for (int r=6;r<9;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    } else if (subgrid == 8) {
+        for (int c=3;c<6;c++) {
+            for (int r=6;r<9;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    } else {
+        for (int c=6;c<9;c++) {
+            for (int r=6;r<9;r++) {
+                if (_cells[c][r] == value) {
+                    canInsert = false;
+                } else {
+                    canInsert = true;
+                }
+                
+            }
+        }
+    }
+    return canInsert;
+}
+
+-(int)subgridOfRow:(int)row andCol:(int)col {
+    if (row < 3) {
+        if (col < 3) {
+            return 1;
+        } else if (col < 6) {
+            return 2;
+        } else {
+            return 3;
+        }
+    } else if (row < 6) {
+        if (col < 3) {
+            return 4;
+        } else if (col < 6) {
+            return 5;
+        } else {
+            return 6;
+        }
+    } else {
+        if (col < 3) {
+            return 7;
+        } else if (col < 6) {
+            return 8;
+        } else {
+            return 9;
+        }
     }
 }
 
