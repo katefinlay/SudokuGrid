@@ -54,7 +54,7 @@ int initialGrid[81] =
     for (int r = 0; r<9; r++) {
         for (int c = 0; c<9; c++) {
             int toInsert = [self getNumberWithRow:c andCol:r];
-            [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+            [_grid setValueForCellAtRow:r andCol:c withValue:toInsert];
         }
     }
     [self.view addSubview:_grid];
