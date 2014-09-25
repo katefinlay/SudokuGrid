@@ -38,6 +38,7 @@
 		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
 		51F2CDCE19CE283100871880 /* KFAMGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDCD19CE283100871880 /* KFAMGridModel.m */; };
 		51F2CDD119CE302000871880 /* KFAMNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDD019CE302000871880 /* KFAMNumPadView.m */; };
+		51FCFECF19D4C585008D3CB5 /* grid2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51FCFECE19D4C584008D3CB5 /* grid2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		51F2CDCD19CE283100871880 /* KFAMGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridModel.m; sourceTree = "<group>"; };
 		51F2CDCF19CE302000871880 /* KFAMNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMNumPadView.h; sourceTree = "<group>"; };
 		51F2CDD019CE302000871880 /* KFAMNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMNumPadView.m; sourceTree = "<group>"; };
+		51FCFECE19D4C584008D3CB5 /* grid2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		518468EC19C6496A00243F0B /* Sudoku Grid */ = {
 			isa = PBXGroup;
 			children = (
+				51FCFECE19D4C584008D3CB5 /* grid2.txt */,
 				518468F519C6496A00243F0B /* KFAMAppDelegate.h */,
 				51F2CDCF19CE302000871880 /* KFAMNumPadView.h */,
 				51F2CDD019CE302000871880 /* KFAMNumPadView.m */,
@@ -263,6 +266,7 @@
 				518468FF19C6496A00243F0B /* Images.xcassets in Resources */,
 				518468F119C6496A00243F0B /* InfoPlist.strings in Resources */,
 				518468FA19C6496A00243F0B /* Main.storyboard in Resources */,
+				51FCFECF19D4C585008D3CB5 /* grid2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "source ~/.bash_profile\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\n\ncd ${TARGET_TEMP_DIR}\nif [ ! -f compile_commands.json ]; then\necho \"[*] compile_commands.json not found, possibly clean was performed\"\necho \"[*] starting xcodebuild to rebuild the project..\"\n# clean previous output\nif [ -f xcodebuild.log ]; then\nrm xcodebuild.log\nfi\n\ncd ${SRCROOT}\nxcodebuild clean\n\n#build xcodebuild.log\nxcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n#xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n\necho \"[*] transforming xcodebuild.log into compile_commands.json...\"\ncd ${TARGET_TEMP_DIR}\n#transform it into compile_commands.json\noclint-xcodebuild\n\necho \"[*] copy compile_commands.json to the project root...\"\ncp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\nfi\n\necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\noclint-json-compilation-database | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
+			shellScript = "source ~/.bashrc\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\n\ncd ${TARGET_TEMP_DIR}\nif [ ! -f compile_commands.json ]; then\necho \"[*] compile_commands.json not found, possibly clean was performed\"\necho \"[*] starting xcodebuild to rebuild the project..\"\n# clean previous output\nif [ -f xcodebuild.log ]; then\nrm xcodebuild.log\nfi\n\ncd ${SRCROOT}\nxcodebuild clean\n\n#build xcodebuild.log\nxcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n#xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n\necho \"[*] transforming xcodebuild.log into compile_commands.json...\"\ncd ${TARGET_TEMP_DIR}\n#transform it into compile_commands.json\noclint-xcodebuild\n\necho \"[*] copy compile_commands.json to the project root...\"\ncp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\nfi\n\necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\noclint-json-compilation-database | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
 		};
 /* End PBXShellScriptBuildPhase section */
 

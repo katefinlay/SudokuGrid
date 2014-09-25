@@ -15,6 +15,9 @@
     KFAMGridView* _grid;
     KFAMGridModel* _gridModel;
     KFAMNumPadView* _numPad;
+    UIButton* _newGameButton;
+    UIButton* _restartGameButton;
+    UIButton* _verifySolutionButton;
 }
 
 @end
@@ -32,7 +35,7 @@
     CGRect frame = self.view.frame;
     
     CGFloat x = CGRectGetWidth(frame)*.1;
-    CGFloat y = CGRectGetHeight(frame)*.1;
+    CGFloat y = CGRectGetHeight(frame)*.15;
     CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8;
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
@@ -40,12 +43,16 @@
 
     _grid = [[KFAMGridView alloc] initWithFrame:gridFrame];
     _gridModel = [KFAMGridModel alloc];
+    [_gridModel initialize];
     _numPad = [[KFAMNumPadView alloc] initWithFrame:numPadFrame];
+    
     
     [_grid setAction:@selector(buttonPressed:) withTarget:self];
     
     [self.view addSubview:_grid];
     [self.view addSubview:_numPad];
+    [self addMenuOptions:frame];
+    
     
     //set the initial values for the sudoku grid
     for (int r = 0; r < 9; r++) {
@@ -78,6 +85,59 @@
         [_gridModel inputNumber:currentNumSelected atRow:row andCol:col];
         [_grid displayNumber:currentNumSelected atRow:row andCol:col];
     }
+    
+    
+}
+
+- (void)addMenuOptions:(CGRect)frame {
+    CGFloat buttonHeight = CGRectGetWidth(frame)/20.0;
+    CGFloat buttonWidth = CGRectGetWidth(frame)/5.0;
+    CGFloat buttonX = CGRectGetWidth(frame)*.1;
+    CGFloat buttonY = CGRectGetWidth(frame)*.1;
+    
+    _newGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _restartGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _verifySolutionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [_newGameButton addTarget:self action:@selector(newGameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_restartGameButton addTarget:self action:@selector(restartGameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_verifySolutionButton addTarget:self action:@selector(verifySolutionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _newGameButton.frame = CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight);
+    _restartGameButton.frame = CGRectMake(buttonX + buttonWidth*1.5, buttonY, buttonWidth, buttonHeight);
+    _verifySolutionButton.frame = CGRectMake(buttonX + buttonWidth*3.0, buttonY, buttonWidth, buttonHeight);
+    
+    [_newGameButton setTitle:[NSString stringWithFormat:@"Start New Game"] forState:UIControlStateNormal];
+    [_restartGameButton setTitle:[NSString stringWithFormat:@"Restart Game"] forState:UIControlStateNormal];
+    [_verifySolutionButton setTitle:[NSString stringWithFormat:@"Check Solution"] forState:UIControlStateNormal];
+    
+    [_newGameButton setBackgroundColor:[UIColor redColor]];
+    [_restartGameButton setBackgroundColor:[UIColor redColor]];
+    [_verifySolutionButton setBackgroundColor:[UIColor redColor]];
+    
+    [self.view addSubview:_newGameButton];
+    [self.view addSubview:_restartGameButton];
+    [self.view addSubview:_verifySolutionButton];
+}
+
+- (void)newGameButtonPressed:(id)sender {
+    
+}
+
+- (void)restartGameButtonPressed:(id)sender {
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            if ([_gridModel isMutableForRow:r andCol:c]) {
+                [_gridModel inputNumber:0 atRow:r andCol:c];
+                [_grid displayNumber:0 atRow:r andCol:c];
+            }
+        }
+    }
+
+    
+}
+
+- (void)verifySolutionButtonPressed:(id)sender {
     
 }
 

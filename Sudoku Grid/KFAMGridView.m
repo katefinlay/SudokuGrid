@@ -94,7 +94,7 @@
     
     // give button correct attributes
     [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     button.showsTouchWhenHighlighted = YES;
     button.tag = tag;
@@ -110,12 +110,17 @@
               atRow:(int)row
              andCol:(int)col {
     UIButton* currentButton = [self getCellWithRow:row andCol:col];
+    [currentButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [currentButton setTitle:[NSString stringWithFormat:@"%d", newNum] forState:UIControlStateNormal];
+    if (newNum == 0) {
+        [currentButton setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
+    }
 }
 
 - (void)setValueForCellAtRow:(int)row
                       andCol:(int)col
                    withValue:(int)value {
+    
     UIButton* cell = [self getCellWithRow:row andCol:col];
     
     //retrieve the proper number

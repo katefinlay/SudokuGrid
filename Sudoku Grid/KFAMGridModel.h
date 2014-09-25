@@ -10,8 +10,11 @@
 
 @interface KFAMGridModel : NSObject
 
+-(void) initialize;
+
 - (int)getNumberWithRow:(int)row
                  andCol:(int)col;
+
 - (BOOL)isValidValue:(int)val
                    forRow:(int)row
                    andCol:(int)col;
