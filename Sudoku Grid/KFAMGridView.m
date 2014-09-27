@@ -109,6 +109,7 @@
 - (void)displayNumber:(int)newNum
               atRow:(int)row
              andCol:(int)col {
+    NSLog(@"in display number, trying to show %d at %d %d", newNum, row, col);
     UIButton* currentButton = [self getCellWithRow:row andCol:col];
     [currentButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [currentButton setTitle:[NSString stringWithFormat:@"%d", newNum] forState:UIControlStateNormal];

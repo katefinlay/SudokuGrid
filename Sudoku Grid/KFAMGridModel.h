@@ -25,4 +25,6 @@
 - (void)inputNumber:(int)newNum
               atRow:(int)row
              andCol:(int)col;
+
+- (void)makeNewGame;
 @end

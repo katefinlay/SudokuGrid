@@ -61,9 +61,7 @@
             [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
         }
     }
-    
-    //tests
-    //BOOL val = [_gridModel isValidValue:3 forRow:0 andCol:7];
+
     
     
 }
@@ -76,6 +74,12 @@
     int col = num%9;
     
     NSLog(@"You pressed the button at row %d, column %d!", row,col);
+    NSLog(@"GRID:");
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            NSLog(@"[%d][%d] : %d:", i, j, [_gridModel getNumberWithRow:i andCol:j]);
+        }
+    }
     
     int currentNumSelected = [_numPad getCurrentNumSelected];
     BOOL isMutable = [_gridModel isMutableForRow:row andCol:col];
@@ -121,7 +125,13 @@
 }
 
 - (void)newGameButtonPressed:(id)sender {
-    
+    [_gridModel makeNewGame];
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            int toInsert = [_gridModel getNumberWithRow:c andCol:r];
+            [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+        }
+    }
 }
 
 - (void)restartGameButtonPressed:(id)sender {
