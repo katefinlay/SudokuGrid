@@ -100,5 +100,13 @@
     return _currentNumber;
 }
 
+-(void) setCurrentNum:(int)number {
+    UIButton* oldButton = _numbers[_currentNumber - 1];
+    [oldButton setBackgroundColor:[UIColor whiteColor]];
+    _currentNumber = number;
+    UIButton* newButton = _numbers[_currentNumber - 1];
+    [newButton setBackgroundColor:[UIColor yellowColor]];
+}
+
 
 @end

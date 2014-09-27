@@ -10,14 +10,15 @@
 
 @interface KFAMGridView : UIView
 
-- (void)setValueForCellAtRow:(int)row
-                      andCol:(int)col
-                   withValue:(int)value;
+//- (void)setValueForCellAtRow:(int)row
+//                      andCol:(int)col
+//                   withValue:(int)value;
 
 -(void)setAction:(SEL)action withTarget:(id)target;
 
 - (void)displayNumber:(int)newNum
                 atRow:(int)row
-               andCol:(int)col;
+               andCol:(int)col
+             andColor:(UIColor*)color;
 
 @end

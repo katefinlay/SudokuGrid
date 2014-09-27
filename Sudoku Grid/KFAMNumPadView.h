@@ -12,4 +12,6 @@
 
 -(int) getCurrentNumSelected;
 
+-(void) setCurrentNum:(int)number;
+
 @end

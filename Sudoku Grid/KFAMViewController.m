@@ -58,7 +58,8 @@
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             int toInsert = [_gridModel getNumberWithRow:c andCol:r];
-            [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+            //[_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+            [_grid displayNumber:toInsert atRow:c andCol:r andColor:[UIColor blackColor]];
         }
     }
 
@@ -87,7 +88,7 @@
     
     if (isMutable && isValid) {
         [_gridModel inputNumber:currentNumSelected atRow:row andCol:col];
-        [_grid displayNumber:currentNumSelected atRow:row andCol:col];
+        [_grid displayNumber:currentNumSelected atRow:row andCol:col andColor:[UIColor blueColor]];
     }
     
     
@@ -129,9 +130,11 @@
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             int toInsert = [_gridModel getNumberWithRow:c andCol:r];
-            [_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+            //[_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
+            [_grid displayNumber:toInsert atRow:c andCol:r andColor:[UIColor blackColor]];
         }
     }
+    [_numPad setCurrentNum:1];
 }
 
 - (void)restartGameButtonPressed:(id)sender {
@@ -139,11 +142,11 @@
         for (int c = 0; c < 9; c++) {
             if ([_gridModel isMutableForRow:r andCol:c]) {
                 [_gridModel inputNumber:0 atRow:r andCol:c];
-                [_grid displayNumber:0 atRow:r andCol:c];
+                [_grid displayNumber:0 atRow:r andCol:c andColor:[UIColor blueColor]];
             }
         }
     }
-
+    [_numPad setCurrentNum:1];
     
 }
 
