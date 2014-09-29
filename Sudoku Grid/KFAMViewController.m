@@ -20,7 +20,6 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     KFAMGridModel* _gridModel;
     KFAMGridGenerator* _gridGenerator;
     int _initialGrid[81];
-//    KFAMTimer* _timer;
     NSDate* _startTime;
 }
 
@@ -31,8 +30,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 
 // Returns the vlue in the initial grid
 - (int)getNumberWithRow:(int)row
-                 andCol:(int)col
-{
+                 andCol:(int)col {
         return _initialGrid[row*9 + col];
 }
 
@@ -42,10 +40,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 - (void)viewDidLoad {
     // make sure things loaded correctly
     [super viewDidLoad];
-//    
-//    _timer = [[KFAMTimer alloc] init];
-//    [_timer startTimer];
-//    NSLog(@"%f", [_timer timeElapsedInMilliseconds]);
+
     _startTime = [NSDate date];
     
     _gridGenerator = [[KFAMGridGenerator alloc] init];
@@ -66,9 +61,6 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     _gridModel = [_gridGenerator getGridModel];
     
     [self updateLabels];
-    
-    // Make the main background color white
-    self.view.backgroundColor = [UIColor whiteColor];
     
     // Create sudoku board and place on the main view
     CGFloat x = CGRectGetWidth(self.view.frame);
@@ -97,8 +89,6 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     }
     [_numPad setAction:@selector(numPadPressed:) withTarget:self];
     [self.view addSubview:_numPad];
-    
-//    [self.restartButton setTitle:@"Restart Game" forState:UIControlStateNormal];
 }
 
 // Gets information from gridview and displays which button has been
@@ -157,8 +147,8 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     NSLog(@"You selected %d for insertion.", tag + 1);
 }
 
-- (IBAction)restartGame
-{
+// the function that the restart button calls
+- (IBAction)restartGame {
     CATransition *transition = [CATransition animation];
     transition.type = kCATransitionFade;
     transition.duration = 1;
@@ -168,8 +158,8 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     [self.view.layer addAnimation:transition forKey:nil];
 }
 
-- (void)updateLabels
-{
+// update the label for remaining cell count
+- (void)updateLabels {
     int tilesLeft = [_gridModel remainingCells];
     self.countLabel.text = [NSString stringWithFormat:@"Tiles: %d", tilesLeft];
 }

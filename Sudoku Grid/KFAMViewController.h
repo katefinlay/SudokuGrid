@@ -10,8 +10,10 @@
 
 @interface KFAMViewController : UIViewController
 
+// label that keeps count of currently blank cells
 @property (nonatomic, strong) IBOutlet UILabel *countLabel;
 
+// the function that the restart button calls
 - (IBAction)restartGame;
 
 @end

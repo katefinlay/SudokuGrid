@@ -10,7 +10,7 @@
 
 @interface KFAMNumPadView : UIView
 
-// Creates the Sudoku board within the subview frame
+// initializes all of the UIButtons and allocates them in a 2X5 frame
 - (void)makeButtonsWithFrame:(CGRect)frame;
 
 // Returns the button in the NSMutable array of all the
@@ -27,6 +27,7 @@
 -(void)setAction:(SEL)action
       withTarget:(id)target;
 
+// returns the currently selected number
 -(int)numSelected;
 
 @end

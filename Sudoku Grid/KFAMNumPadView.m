@@ -8,16 +8,14 @@
 
 #import "KFAMNumPadView.h"
 
-@implementation KFAMNumPadView
-{
+@implementation KFAMNumPadView {
     NSMutableArray* _buttons;
     id _target;
     SEL _action;
     int numSelected;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self makeButtonsWithFrame:frame];
@@ -49,21 +47,21 @@
     [(id)sender setBackgroundColor:[[UIColor alloc] initWithRed:1 green:105/255.0 blue:180/255.0 alpha:1]];
 }
 
+// returns the currently selected number
 -(int)numSelected {
     return numSelected;
 }
 
 
 // helper method to unhighlight all currently highlighted buttons
--(void)unhighlightAll
-{
+-(void)unhighlightAll {
     for (int i = 0; i < 10; i++) {
         UIButton *button = _buttons[i];
         [button setBackgroundColor:[[UIColor alloc] initWithRed:1 green:0.7 blue:0.8 alpha:1]];
     }
 }
 
-// 
+// initializes all of the UIButtons and allocates them in a 2X5 frame
 - (void)makeButtonsWithFrame:(CGRect)frame {
     _buttons = [ [NSMutableArray alloc] initWithCapacity:9];
     
@@ -130,6 +128,7 @@
     //retrieve the proper number
     NSString* numToFill;
     
+    // values of 10 are also designated as blank cells (for deletion purposes)
     if (value == 0 || value==10) {
         numToFill = @"";
     } else {

@@ -37,19 +37,15 @@ int _fullArray[81] =
 }
 
 // overriding intializers for test cases
--(id)init
-{
+-(id)init {
     return [self initWithArray:_testArray];
 }
 
-// overriding initializers for test cases
--(id)fullinit
-{
+-(id)fullinit {
     return [self initWithArray:_fullArray];
 }
 
--(id)initWithArray:(int[])array
-{
+-(id)initWithArray:(int[])array {
     self = [super init];
     if (self) {
         [self initializeGrid:array];
@@ -58,8 +54,7 @@ int _fullArray[81] =
 }
 
 // Initialize grid with information from view controller
--(void)initializeGrid:(int[])initialArray
-{
+-(void)initializeGrid:(int[])initialArray {
     for (int r=0; r<9; r++) {
         for (int c=0; c<9; c++) {
             _cells[c][r] = initialArray[r*9 + c];
@@ -69,8 +64,7 @@ int _fullArray[81] =
 }
 
 // Return the value at a row and column of the cell array
--(int)getValueAtRow:(int)row andColumn:(int)column
-{
+-(int)getValueAtRow:(int)row andColumn:(int)column {
     return _cells[column][row];
 }
 
@@ -80,8 +74,7 @@ int _fullArray[81] =
 }
 
 // Identify whether a number in the grid is an initial value or not
--(BOOL)canInsertAtRow:(int)row andColumn:(int)col
-{
+-(BOOL)canInsertAtRow:(int)row andColumn:(int)col {
     
     // if the value is 0, it is blank
     if (_initialGrid[col][row] == 0 || _initialGrid[col][row] == 10) {
@@ -123,7 +116,7 @@ int _fullArray[81] =
 }
 
 // Identify whather a number can be inserted at a certain subgrid
--(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col  {
+-(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col {
     if (value == 10) {
         return true;
     }
@@ -213,8 +206,7 @@ int _fullArray[81] =
 }
 
 // Check whether the grid is complete or not
-- (BOOL)gridComplete
-{
+- (BOOL)gridComplete {
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++ ) {
             if (_cells[j][i] == 0) {
@@ -226,8 +218,7 @@ int _fullArray[81] =
 }
 
 // Return the number of currently blank cells
-- (int)remainingCells
-{
+- (int)remainingCells {
     int count = 0;
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {

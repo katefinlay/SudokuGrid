@@ -11,10 +11,13 @@
 
 @interface KFAMGridGenerator : NSObject
 
+// parse the text file with our grids and randomly select a line representing a grid
 - (void)getRawGrid;
 
+// return the int grid array of the selected line
 - (KFAMGridModel*)getGridModel;
 
+// return the NSMutableArray of the selected line
 - (NSMutableArray*)getArray;
 
 

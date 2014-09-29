@@ -134,8 +134,7 @@
 - (void)setValueForCellAtCol:(int)col
                       andRow:(int)row
                    withValue:(int)value
-                   withColor:(UIColor*)color
-{
+                   withColor:(UIColor*)color {
     UIButton* cell = [self getCellWithRow:col andCol:row];
     
     [cell setTitleColor:color forState:UIControlStateNormal];
@@ -144,6 +143,7 @@
     //retrieve the proper number
     NSString* numToFill;
     
+    // values of 10 are also designated as blank cells (for deletion purposes)
     if (value == 0 || value == 10) {
         numToFill = @"";
     } else {
