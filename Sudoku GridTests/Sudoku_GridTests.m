@@ -8,11 +8,14 @@
 
 #import <XCTest/XCTest.h>
 #import "KFAMGridModel.h"
+#import "KFAMGridGenerator.h"
 
 @interface Sudoku_GridTests : XCTestCase
 {
     KFAMGridModel* _model;
     KFAMGridModel* _fullModel;
+    
+    KFAMGridGenerator* _modelGen;
 }
 
 @end
@@ -26,6 +29,7 @@
     
     _model = [[KFAMGridModel alloc] init];
     _fullModel = [[KFAMGridModel alloc] fullinit];
+    _modelGen = [[KFAMGridGenerator alloc] init];
 }
 
 - (void)tearDown
@@ -37,6 +41,8 @@
 // some tests for GridModel
 - (void)testValues
 {
+    // TESTS FOR GRIDMODEL CLASS
+    
     // some tests for inserting into a certain row with consistency
     XCTAssertTrue([_model canInsertValue:1 atRow:0]==false, @"Cannot insert");
     XCTAssertTrue([_model canInsertValue:1 atRow:1]==true, @"Can insert");
@@ -81,6 +87,17 @@
     // some tests for remainingCells
     XCTAssertTrue([_model remainingCells]==49, @"Semi-full grid");
     XCTAssertTrue([_fullModel remainingCells]==0, @"Full grid");
+    
+    
+    //TESTS FOR GRIDGENERATOR CLASS
+    
+    [_modelGen getRawGrid];
+    
+    // test for getArray
+    XCTAssertTrue([[_modelGen getArray] count]==81, @"Checking size of generated grid");
+    
+    // test for getGridModel
+    XCTAssertTrue([[_modelGen getGridModel] isKindOfClass:[KFAMGridModel class]], @"Checking that generated grid is of the right type");
 }
 
 @end
