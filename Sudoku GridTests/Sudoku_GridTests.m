@@ -12,6 +12,7 @@
 @interface Sudoku_GridTests : XCTestCase
 {
     KFAMGridModel* _model;
+    KFAMGridModel* _fullModel;
 }
 
 @end
@@ -24,6 +25,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     _model = [[KFAMGridModel alloc] init];
+    _fullModel = [[KFAMGridModel alloc] fullinit];
 }
 
 - (void)tearDown
@@ -71,6 +73,14 @@
     // some tests for canInsert, after inserting new values
     XCTAssertTrue([_model canInsertAtRow:0 andColumn:0]==false, @"Cannot insert into initial value");
     XCTAssertTrue([_model canInsertAtRow:9 andColumn:9]==true, @"Can insert into a cell that has been inserted into");
+    
+    // some tests for gridComplete
+    XCTAssertTrue([_model gridComplete]==false, @"Grid is not complete");
+    XCTAssertTrue([_fullModel gridComplete]==true, @"Grid is full");
+    
+    // some tests for remainingCells
+    XCTAssertTrue([_model remainingCells]==49, @"Semi-full grid");
+    XCTAssertTrue([_fullModel remainingCells]==0, @"Full grid");
 }
 
 @end

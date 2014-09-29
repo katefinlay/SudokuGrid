@@ -50,11 +50,9 @@
     _cells = [ [NSMutableArray alloc] initWithCapacity:9];
     
     // create grid frame
-    CGFloat x = CGRectGetWidth(frame)*.1;
-    CGFloat y = CGRectGetHeight(frame)*.1;
-    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8+.03*x+.03*y;
-    CGRect gridFrame = CGRectMake(x, y, size, size);
-    CGFloat offset = .10*size;
+    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame));
+    CGRect gridFrame = CGRectMake(0, 0, size, size);
+    CGFloat offset = .1*size;
     
     // create grid view
     UIView* backgroundView;
@@ -81,14 +79,14 @@
             // create the button
             UIButton* button;
             CGFloat buttonSize = size/11;
-            CGRect buttonFrame = CGRectMake(.16*size+r*offset+yoffsetToAdd, .20*size+c*offset+xoffsetToAdd, buttonSize, buttonSize);
+            CGRect buttonFrame = CGRectMake(.035*size+r*offset+yoffsetToAdd, .035*size+c*offset+xoffsetToAdd, buttonSize, buttonSize);
             button = [ [UIButton alloc] initWithFrame:buttonFrame];
-            button.backgroundColor = [UIColor whiteColor];
+            button.backgroundColor = [[UIColor alloc] initWithRed:1 green:0.7 blue:0.8 alpha:1];
             [self addSubview:button];
             
             // give button correct attributes
             [button addTarget:self action:@selector(cellPressed:) forControlEvents:UIControlEventTouchUpInside]; //make own version of this
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             button.showsTouchWhenHighlighted = YES;
             button.tag = currentTag;
@@ -117,7 +115,7 @@
                    withValue:(int)value {
     UIButton* cell = [self getCellWithRow:col andCol:row];
     
-    [cell setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [cell setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cell setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     //retrieve the proper number
@@ -146,7 +144,7 @@
     //retrieve the proper number
     NSString* numToFill;
     
-    if (value == 0) {
+    if (value == 0 || value == 10) {
         numToFill = @"";
     } else {
         numToFill = [NSString stringWithFormat:@"%d", value];

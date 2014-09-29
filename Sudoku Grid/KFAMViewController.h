@@ -10,4 +10,8 @@
 
 @interface KFAMViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *countLabel;
+
+- (IBAction)restartGame;
+
 @end

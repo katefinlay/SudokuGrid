@@ -9,17 +9,8 @@
 #import "KFAMGridView.h"
 #import "KFAMGridModel.h"
 #import "KFAMNumPadView.h"
-
-int initialGrid[81] =
-{1,0,3,5,0,0,0,0,9,
-    0,0,2,4,6,0,0,7,0,
-    0,4,0,1,0,0,0,0,0,
-    0,0,0,0,2,6,7,0,8,
-    0,0,1,0,7,0,9,4,0,
-    0,6,4,0,1,0,0,0,2,
-    5,0,0,9,0,1,6,0,0,
-    0,0,0,0,5,4,0,1,0,
-    7,3,0,0,0,0,0,0,0};
+#import "KFAMGridGenerator.h"
+//#import "KFAMTimer.h"
 
 int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 
@@ -27,6 +18,10 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     KFAMGridView* _grid;
     KFAMNumPadView* _numPad;
     KFAMGridModel* _gridModel;
+    KFAMGridGenerator* _gridGenerator;
+    int _initialGrid[81];
+//    KFAMTimer* _timer;
+    NSDate* _startTime;
 }
 
 @end
@@ -38,7 +33,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 - (int)getNumberWithRow:(int)row
                  andCol:(int)col
 {
-        return initialGrid[row*9 + col];
+        return _initialGrid[row*9 + col];
 }
 
 
@@ -47,15 +42,40 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
 - (void)viewDidLoad {
     // make sure things loaded correctly
     [super viewDidLoad];
+//    
+//    _timer = [[KFAMTimer alloc] init];
+//    [_timer startTimer];
+//    NSLog(@"%f", [_timer timeElapsedInMilliseconds]);
+    _startTime = [NSDate date];
     
-    _gridModel = [[KFAMGridModel alloc] init];
-    [_gridModel initializeGrid:initialGrid];
+    _gridGenerator = [[KFAMGridGenerator alloc] init];
+    [_gridGenerator getRawGrid];
+    NSMutableArray *initGrid = [_gridGenerator getArray];
+
+    
+    
+    
+    for(int i=0;i<[initGrid count];i++) {
+        NSNumber *index = [initGrid objectAtIndex:(NSUInteger) i];
+        int toAdd = [index intValue];
+        _initialGrid[i] = toAdd;
+    }
+    
+    // initaliztion and allocation done when grid generator is
+    // initalized, so no init needed here
+    _gridModel = [_gridGenerator getGridModel];
+    
+    [self updateLabels];
     
     // Make the main background color white
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Create sudoku board and place on the main view
-    _grid = [[KFAMGridView alloc] initWithFrame:self.view.frame];
+    CGFloat x = CGRectGetWidth(self.view.frame);
+    CGFloat y = CGRectGetHeight(self.view.frame);
+    
+    UIView *gridContainer = [[UIView alloc] initWithFrame:CGRectMake(x*.1,y*.16,x*0.8,y*0.8)];
+    _grid = [[KFAMGridView alloc] initWithFrame:gridContainer.frame];
     [_grid setAction:@selector(buttonPressed:) withTarget:self];
     
     // Run through our array of initial values and give values
@@ -64,16 +84,12 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
         for (int c = 0; c<9; c++) {
             int toInsert = [self getNumberWithRow:c andCol:r];
             [_grid setValueForCellAtCol:r andRow:c withValue:toInsert];
-            NSLog(@"We are inserting %d at row %d, column %d", toInsert, r, c);
         }
     }
     [self.view addSubview:_grid];
     
     // Initialize numpad
-    
-    CGFloat x = CGRectGetWidth(self.view.frame);
-    CGFloat y = CGRectGetHeight(self.view.frame);
-    UIView *numPadContainer = [[UIView alloc] initWithFrame:CGRectMake(x*.1,y*.8,x*1.035,y)];
+    UIView *numPadContainer = [[UIView alloc] initWithFrame:CGRectMake(x*.245 - 75,y*.79,x*0.6,y*0.14)];
     _numPad = [[KFAMNumPadView alloc] initWithFrame:numPadContainer.frame];
     for (int i = 0; i < 9; i++) {
         int toInsert = numPadArray[i];
@@ -81,6 +97,8 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     }
     [_numPad setAction:@selector(numPadPressed:) withTarget:self];
     [self.view addSubview:_numPad];
+    
+//    [self.restartButton setTitle:@"Restart Game" forState:UIControlStateNormal];
 }
 
 // Gets information from gridview and displays which button has been
@@ -90,7 +108,7 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
     int row = tag%9;
     int col = tag/9;
     int numPadSelected = [_numPad numSelected]+1; // increment by 1 because the tag index starts at 0.
-    NSLog(@"You pressed the button at row %d, column %d!", row + 1, col + 1);
+    NSLog(@"You pressed the button at row %d, column %d.", row + 1, col + 1);
     
     // To identify whether a number can be inserted in the selected cell
     BOOL notInitial = [_gridModel canInsertAtRow:row andColumn:col];
@@ -104,21 +122,57 @@ int numPadArray[9] = {1,2,3,4,5,6,7,8,9};
         
         [_grid setValueForCellAtCol:col andRow:row withValue:numPadSelected withColor:[UIColor blueColor]];
         
-        NSLog(@"You inserted %d at row %d, column %d", numPadSelected, row, col);
+        NSLog(@"You inserted %d at row %d, column %d.", numPadSelected, row, col);
     }
     // If cell is an initial value, cannot insert
     else {
-        NSLog(@"You cannot insert into cells with initial values.");
+        NSLog(@"Cannot insert there; cell has initial value or value to insert is inconsistent.");
+        
+        
     }
+    if ([_gridModel gridComplete]) {
+        NSLog(@"Grid complete.");
+        
+        // when the current grid is complete, an alert appears to indicate completion and elapsed time
+        NSDate* _endTime = [NSDate date];
+        NSTimeInterval timeInterval = [_endTime timeIntervalSinceDate:_startTime];
+        int intTimeInterval = (int)timeInterval;
+        NSString *timeString = [NSString stringWithFormat:@"%d", intTimeInterval];
+        
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Grid Complete!"
+                                  message:[NSString stringWithFormat:@"You completed the grid in %@ seconds", timeString]
+                                  delegate:nil
+                                  cancelButtonTitle:@"Ok"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    [self updateLabels];
 }
 
 // Gets information from numPadView and displays which button has been
 // pressed on the console.
 -(void)numPadPressed:(NSNumber*)buttonTag {
     int tag = [buttonTag intValue];
-    NSLog(@"You selected button number %d", tag + 1);
+    NSLog(@"You selected %d for insertion.", tag + 1);
 }
 
+- (IBAction)restartGame
+{
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionFade;
+    transition.duration = 1;
+    transition.timingFunction = [CAMediaTimingFunction
+                                 functionWithName:kCAMediaTimingFunctionEaseOut];
+    [self viewDidLoad];
+    [self.view.layer addAnimation:transition forKey:nil];
+}
+
+- (void)updateLabels
+{
+    int tilesLeft = [_gridModel remainingCells];
+    self.countLabel.text = [NSString stringWithFormat:@"Tiles: %d", tilesLeft];
+}
 
 // Checks if memory was received.
 - (void)didReceiveMemoryWarning {

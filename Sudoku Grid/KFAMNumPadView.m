@@ -46,7 +46,7 @@
     
     // unhighlight all currently highlighted buttons and then highlight pressed button
     [self unhighlightAll];
-    [(id)sender setBackgroundColor:[UIColor grayColor]];
+    [(id)sender setBackgroundColor:[[UIColor alloc] initWithRed:1 green:105/255.0 blue:180/255.0 alpha:1]];
 }
 
 -(int)numSelected {
@@ -57,9 +57,9 @@
 // helper method to unhighlight all currently highlighted buttons
 -(void)unhighlightAll
 {
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 10; i++) {
         UIButton *button = _buttons[i];
-        [button setBackgroundColor:[UIColor whiteColor]];
+        [button setBackgroundColor:[[UIColor alloc] initWithRed:1 green:0.7 blue:0.8 alpha:1]];
     }
 }
 
@@ -68,11 +68,10 @@
     _buttons = [ [NSMutableArray alloc] initWithCapacity:9];
     
     // create numpad frame
-    CGFloat x = CGRectGetWidth(frame)*.1;
-    CGFloat y = CGRectGetHeight(frame)*.1;
-    CGFloat xsize = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8+.03*x+.03*y;
-    CGRect buttonFrame = CGRectMake(0, 0, xsize*0.97, xsize/6.5);
-    CGFloat offset = .10*xsize;
+    CGFloat x = CGRectGetWidth(frame);
+    CGFloat y = CGRectGetHeight(frame);
+    CGRect buttonFrame = CGRectMake(0, 5, x*0.86, y+42);
+    CGFloat offset = .155*x;
     
     // create numpad view
     UIView* backgroundView;
@@ -85,13 +84,16 @@
     
     // Build the board and fill the NSMutable array with buttons
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 10; i++) {
         // create the button
         UIButton* button;
-        CGFloat buttonSize = xsize/11;
-        CGRect buttonFrame = CGRectMake(.04*xsize+i*offset, 20, buttonSize,buttonSize);
+        CGFloat buttonSize = x/7;
+        CGRect buttonFrame = CGRectMake(.05*x+i*offset, 30, buttonSize,buttonSize);
+        if (i > 4) {
+            buttonFrame = CGRectMake(.05*x+(i-5)*offset, 35+buttonSize, buttonSize, buttonSize);
+        }
         button = [ [UIButton alloc] initWithFrame:buttonFrame];
-        button.backgroundColor = [UIColor whiteColor];
+        button.backgroundColor = [[UIColor alloc] initWithRed:1 green:182/255.0 blue:193/255.0 alpha:1];
         [self addSubview:button];
             
         // give button correct attributes
@@ -105,13 +107,14 @@
         currentTag++;
         
         if (i == 0) {
-            [button setBackgroundColor:[UIColor grayColor]];
+            [button setBackgroundColor:[[UIColor alloc] initWithRed:1 green:105/255.0 blue:180/255.0 alpha:1]];
         }
         
         // insert the button
         [_buttons insertObject:button atIndex:i];
     }
 }
+
 
 // Return the button at an index
 -(UIButton*)getCellWithIndex:(int)index {
@@ -127,7 +130,7 @@
     //retrieve the proper number
     NSString* numToFill;
     
-    if (value == 0) {
+    if (value == 0 || value==10) {
         numToFill = @"";
     } else {
         numToFill = [NSString stringWithFormat:@"%d", value];

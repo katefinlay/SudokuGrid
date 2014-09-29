@@ -31,4 +31,13 @@
 // Identify whether a number can be inserted at a certain subgrid
 -(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col;
 
+// Identify whether grid is filled out (i.e. complete and correct) or not
+- (BOOL)gridComplete;
+
+// Counts how many empty cells are currently in the grid
+- (int)remainingCells;
+
+// Overriding initializer for testing
+- (id)fullinit;
+
 @end

@@ -20,6 +20,17 @@ int _testArray[81] =
     0,0,0,0,5,4,0,1,0,
     7,3,0,0,0,0,0,0,0};
 
+int _fullArray[81] =
+{1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1};
+
 @implementation KFAMGridModel {
     int _cells[9][9];
     int _initialGrid[9][9];
@@ -29,6 +40,12 @@ int _testArray[81] =
 -(id)init
 {
     return [self initWithArray:_testArray];
+}
+
+// overriding initializers for test cases
+-(id)fullinit
+{
+    return [self initWithArray:_fullArray];
 }
 
 -(id)initWithArray:(int[])array
@@ -65,8 +82,9 @@ int _testArray[81] =
 // Identify whether a number in the grid is an initial value or not
 -(BOOL)canInsertAtRow:(int)row andColumn:(int)col
 {
+    
     // if the value is 0, it is blank
-    if (_initialGrid[col][row] == 0) {
+    if (_initialGrid[col][row] == 0 || _initialGrid[col][row] == 10) {
         return true;
     }
     else {
@@ -76,6 +94,10 @@ int _testArray[81] =
 
 // Identify whether a number can be inserted at a certain row
 -(BOOL)canInsertValue:(int)value atRow:(int)row {
+    if (value == 10) {
+        return true;
+    }
+    
     for (int i=0; i<9; i++)
     {
         if (_cells[i][row] == value) {
@@ -87,6 +109,10 @@ int _testArray[81] =
 
 // Identify whether a number can be inserted at a certain column
 -(BOOL)canInsertValue:(int)value atCol:(int)col {
+    if (value == 10) {
+        return true;
+    }
+    
     for (int i=0; i<9; i++)
     {
         if (_cells[col][i] == value) {
@@ -98,6 +124,9 @@ int _testArray[81] =
 
 // Identify whather a number can be inserted at a certain subgrid
 -(BOOL)canInsertIntoSubgrid:(int)value atRow:(int)row andCol:(int)col  {
+    if (value == 10) {
+        return true;
+    }
     
     if (row < 3 && col < 3) {
         for (int c=0;c<3;c++) {
@@ -183,32 +212,31 @@ int _testArray[81] =
     } return true;
 }
 
-//-(int)subgridOfRow:(int)row andCol:(int)col inArray:(int[])array {
-//    if (row < 3) {
-//        if (col < 3) {
-//            return 1;
-//        } else if (col < 6) {
-//            return 2;
-//        } else {
-//            return 3;
-//        }
-//    } else if (row < 6) {
-//        if (col < 3) {
-//            return 4;
-//        } else if (col < 6) {
-//            return 5;
-//        } else {
-//            return 6;
-//        }
-//    } else {
-//        if (col < 3) {
-//            return 7;
-//        } else if (col < 6) {
-//            return 8;
-//        } else {
-//            return 9;
-//        }
-//    }
-//}
+// Check whether the grid is complete or not
+- (BOOL)gridComplete
+{
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++ ) {
+            if (_cells[j][i] == 0) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+// Return the number of currently blank cells
+- (int)remainingCells
+{
+    int count = 0;
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (_cells[j][i] == 0 || _cells[j][i] == 10) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 
 @end
