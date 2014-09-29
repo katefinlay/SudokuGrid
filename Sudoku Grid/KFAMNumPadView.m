@@ -15,6 +15,7 @@
     int numSelected;
 }
 
+// initialize the numpad
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
