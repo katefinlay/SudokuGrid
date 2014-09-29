@@ -37,7 +37,7 @@
 
 // This returns information to the viewcontroller
 // about which button was pressed
-- (void)buttonPressed:(id)sender {
+- (void)cellPressed:(id)sender {
     // take the tag of button selected and send it back to the
     // target (which is viewcontroller)
     UIButton* button = (UIButton*) sender;
@@ -50,11 +50,9 @@
     _cells = [ [NSMutableArray alloc] initWithCapacity:9];
     
     // create grid frame
-    CGFloat x = CGRectGetWidth(frame)*.1;
-    CGFloat y = CGRectGetHeight(frame)*.1;
-    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8+.03*x+.03*y;
-    CGRect gridFrame = CGRectMake(x, y, size, size);
-    CGFloat offset = .10*size;
+    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame));
+    CGRect gridFrame = CGRectMake(0, 0, size, size);
+    CGFloat offset = .1*size;
     
     // create grid view
     UIView* backgroundView;
@@ -81,15 +79,14 @@
             // create the button
             UIButton* button;
             CGFloat buttonSize = size/11;
-            CGRect buttonFrame = CGRectMake(.16*size+r*offset+yoffsetToAdd, .20*size+c*offset+xoffsetToAdd, buttonSize, buttonSize);
+            CGRect buttonFrame = CGRectMake(.035*size+r*offset+yoffsetToAdd, .035*size+c*offset+xoffsetToAdd, buttonSize, buttonSize);
             button = [ [UIButton alloc] initWithFrame:buttonFrame];
-            button.backgroundColor = [UIColor whiteColor];
+            button.backgroundColor = [[UIColor alloc] initWithRed:1 green:0.7 blue:0.8 alpha:1];
             [self addSubview:button];
             
             // give button correct attributes
-            [button addTarget:self action:@selector(buttonPressed:)
-             forControlEvents:UIControlEventTouchUpInside]; //make own version of this
-            [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(cellPressed:) forControlEvents:UIControlEventTouchUpInside]; //make own version of this
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             button.showsTouchWhenHighlighted = YES;
             button.tag = currentTag;
@@ -104,8 +101,8 @@
     }
 }
 
-// Returns the button in the NSMutable array of all the
-// buttons placed on the board
+// Returns the button in the NSMutable array at the
+// given row and column
 - (UIButton*)getCellWithRow:(int)row
                      andCol:(int)col {
     return _cells[row][col];
@@ -113,15 +110,41 @@
 
 // Inserts the designated value into the correct
 // button given a row and column
-- (void)setValueForCellAtRow:(int)row
-                      andCol:(int)col
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
                    withValue:(int)value {
-    UIButton* cell = [self getCellWithRow:row andCol:col];
+    UIButton* cell = [self getCellWithRow:col andCol:row];
+    
+    [cell setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cell setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     //retrieve the proper number
     NSString* numToFill;
     
     if (value == 0) {
+        numToFill = @"";
+    } else {
+        numToFill = [NSString stringWithFormat:@"%d", value];
+    }
+    [cell setTitle:numToFill forState:UIControlStateNormal];
+}
+
+// Inserts the designated value into the correct
+// button given a row and column
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
+                   withValue:(int)value
+                   withColor:(UIColor*)color {
+    UIButton* cell = [self getCellWithRow:col andCol:row];
+    
+    [cell setTitleColor:color forState:UIControlStateNormal];
+    [cell setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    //retrieve the proper number
+    NSString* numToFill;
+    
+    // values of 10 are also designated as blank cells (for deletion purposes)
+    if (value == 0 || value == 10) {
         numToFill = @"";
     } else {
         numToFill = [NSString stringWithFormat:@"%d", value];

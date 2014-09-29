@@ -22,6 +22,13 @@
 		5184691019C6496A00243F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5184690E19C6496A00243F0B /* InfoPlist.strings */; };
 		5184691219C6496A00243F0B /* Sudoku_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691119C6496A00243F0B /* Sudoku_GridTests.m */; };
 		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
+		E84B377119D5D85D00D7A4A3 /* grid1.txt in Resources */ = {isa = PBXBuildFile; fileRef = E84B377019D5D85D00D7A4A3 /* grid1.txt */; };
+		E84B377D19D5E1C000D7A4A3 /* KFAMGridGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B377C19D5E1C000D7A4A3 /* KFAMGridGenerator.m */; };
+		E84B378619D8EF0D00D7A4A3 /* launchimg.png in Resources */ = {isa = PBXBuildFile; fileRef = E84B378519D8EF0D00D7A4A3 /* launchimg.png */; };
+		E84B378A19D8F29000D7A4A3 /* backgroundimg.png in Resources */ = {isa = PBXBuildFile; fileRef = E84B378919D8F29000D7A4A3 /* backgroundimg.png */; };
+		E84B378C19D8F90700D7A4A3 /* restartbuttonimg.png in Resources */ = {isa = PBXBuildFile; fileRef = E84B378B19D8F90700D7A4A3 /* restartbuttonimg.png */; };
+		E873DABF19CCC2FF003C9533 /* KFAMGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E873DABE19CCC2FF003C9533 /* KFAMGridModel.m */; };
+		E873DAC219CCC315003C9533 /* KFAMNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E873DAC119CCC315003C9533 /* KFAMNumPadView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +63,16 @@
 		5184691119C6496A00243F0B /* Sudoku_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sudoku_GridTests.m; sourceTree = "<group>"; };
 		5184691B19C6499300243F0B /* KFAMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KFAMGridView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5184691C19C6499300243F0B /* KFAMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E84B377019D5D85D00D7A4A3 /* grid1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid1.txt; sourceTree = "<group>"; };
+		E84B377B19D5E1C000D7A4A3 /* KFAMGridGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFAMGridGenerator.h; path = ../KFAMGridGenerator.h; sourceTree = "<group>"; };
+		E84B377C19D5E1C000D7A4A3 /* KFAMGridGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFAMGridGenerator.m; path = ../KFAMGridGenerator.m; sourceTree = "<group>"; };
+		E84B378519D8EF0D00D7A4A3 /* launchimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchimg.png; sourceTree = "<group>"; };
+		E84B378919D8F29000D7A4A3 /* backgroundimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundimg.png; sourceTree = "<group>"; };
+		E84B378B19D8F90700D7A4A3 /* restartbuttonimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restartbuttonimg.png; sourceTree = "<group>"; };
+		E873DABD19CCC2FF003C9533 /* KFAMGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMGridModel.h; sourceTree = "<group>"; };
+		E873DABE19CCC2FF003C9533 /* KFAMGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridModel.m; sourceTree = "<group>"; };
+		E873DAC019CCC315003C9533 /* KFAMNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMNumPadView.h; sourceTree = "<group>"; };
+		E873DAC119CCC315003C9533 /* KFAMNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMNumPadView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +133,12 @@
 			isa = PBXGroup;
 			children = (
 				518468F519C6496A00243F0B /* KFAMAppDelegate.h */,
+				E84B377B19D5E1C000D7A4A3 /* KFAMGridGenerator.h */,
+				E84B377C19D5E1C000D7A4A3 /* KFAMGridGenerator.m */,
+				E873DABD19CCC2FF003C9533 /* KFAMGridModel.h */,
+				E873DABE19CCC2FF003C9533 /* KFAMGridModel.m */,
+				E873DAC019CCC315003C9533 /* KFAMNumPadView.h */,
+				E873DAC119CCC315003C9533 /* KFAMNumPadView.m */,
 				5184691B19C6499300243F0B /* KFAMGridView.h */,
 				5184691C19C6499300243F0B /* KFAMGridView.m */,
 				518468F619C6496A00243F0B /* KFAMAppDelegate.m */,
@@ -131,6 +154,10 @@
 		518468ED19C6496A00243F0B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E84B378B19D8F90700D7A4A3 /* restartbuttonimg.png */,
+				E84B378919D8F29000D7A4A3 /* backgroundimg.png */,
+				E84B378519D8EF0D00D7A4A3 /* launchimg.png */,
+				E84B377019D5D85D00D7A4A3 /* grid1.txt */,
 				518468EE19C6496A00243F0B /* Sudoku Grid-Info.plist */,
 				518468EF19C6496A00243F0B /* InfoPlist.strings */,
 				518468F219C6496A00243F0B /* main.m */,
@@ -167,6 +194,7 @@
 				518468DF19C6496900243F0B /* Sources */,
 				518468E019C6496900243F0B /* Frameworks */,
 				518468E119C6496900243F0B /* Resources */,
+				E8EA393919D918F90029F970 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -236,7 +264,11 @@
 			files = (
 				518468FF19C6496A00243F0B /* Images.xcassets in Resources */,
 				518468F119C6496A00243F0B /* InfoPlist.strings in Resources */,
+				E84B377119D5D85D00D7A4A3 /* grid1.txt in Resources */,
+				E84B378C19D8F90700D7A4A3 /* restartbuttonimg.png in Resources */,
+				E84B378619D8EF0D00D7A4A3 /* launchimg.png in Resources */,
 				518468FA19C6496A00243F0B /* Main.storyboard in Resources */,
+				E84B378A19D8F29000D7A4A3 /* backgroundimg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,15 +282,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E8EA393919D918F90029F970 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		518468DF19C6496900243F0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				518468FD19C6496A00243F0B /* KFAMViewController.m in Sources */,
+				E84B377D19D5E1C000D7A4A3 /* KFAMGridGenerator.m in Sources */,
 				5184691D19C6499300243F0B /* KFAMGridView.m in Sources */,
+				E873DAC219CCC315003C9533 /* KFAMNumPadView.m in Sources */,
 				518468F319C6496A00243F0B /* main.m in Sources */,
 				518468F719C6496A00243F0B /* KFAMAppDelegate.m in Sources */,
+				E873DABF19CCC2FF003C9533 /* KFAMGridModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +379,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -367,6 +420,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -398,6 +453,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sudoku Grid/Sudoku Grid-Prefix.pch";
 				INFOPLIST_FILE = "Sudoku Grid/Sudoku Grid-Info.plist";
@@ -465,6 +522,7 @@
 				5184691719C6496A00243F0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5184691819C6496A00243F0B /* Build configuration list for PBXNativeTarget "Sudoku GridTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +531,7 @@
 				5184691A19C6496A00243F0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

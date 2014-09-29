@@ -19,12 +19,20 @@
 
 // Inserts the designated value into the correct
 // button given a row and column
-- (void)setValueForCellAtRow:(int)row
-                      andCol:(int)col
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
                    withValue:(int)value;
+
+// Inserts the designated value into the correct
+// button given a row and column, with a designated color
+- (void)setValueForCellAtCol:(int)col
+                      andRow:(int)row
+                   withValue:(int)value
+                   withColor:(UIColor*)color;
 
 // Defines viewcontroller as the target class to return
 // information about the Sudoku board to.
--(void)setAction:(SEL)action withTarget:(id)target;
+-(void)setAction:(SEL)action
+      withTarget:(id)target;
 
 @end
