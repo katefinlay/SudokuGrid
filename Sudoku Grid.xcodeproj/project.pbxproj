@@ -36,6 +36,10 @@
 		5184691019C6496A00243F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5184690E19C6496A00243F0B /* InfoPlist.strings */; };
 		5184691219C6496A00243F0B /* Sudoku_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691119C6496A00243F0B /* Sudoku_GridTests.m */; };
 		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
+		51B0B33C19DA8249004C7FDA /* KFAMMockGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51B0B33B19DA8249004C7FDA /* KFAMMockGridModel.m */; };
+		51B0B33F19DA8FBB004C7FDA /* KFAMGridGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 51B0B33E19DA8FBB004C7FDA /* KFAMGridGenerator.m */; };
+		51B0B34419DB3013004C7FDA /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B0B34319DB3013004C7FDA /* libOCMock.a */; };
+		51B0B34519DB30B0004C7FDA /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B0B34319DB3013004C7FDA /* libOCMock.a */; };
 		51C910A019DA639400D33FED /* RelaxingMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */; };
 		51F2CDCE19CE283100871880 /* KFAMGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDCD19CE283100871880 /* KFAMGridModel.m */; };
 		51F2CDD119CE302000871880 /* KFAMNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDD019CE302000871880 /* KFAMNumPadView.m */; };
@@ -74,6 +78,12 @@
 		5184691119C6496A00243F0B /* Sudoku_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sudoku_GridTests.m; sourceTree = "<group>"; };
 		5184691B19C6499300243F0B /* KFAMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KFAMGridView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5184691C19C6499300243F0B /* KFAMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		51B0B33A19DA8249004C7FDA /* KFAMMockGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFAMMockGridModel.h; path = "Sudoku GridTests/KFAMMockGridModel.h"; sourceTree = SOURCE_ROOT; };
+		51B0B33B19DA8249004C7FDA /* KFAMMockGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFAMMockGridModel.m; path = "Sudoku GridTests/KFAMMockGridModel.m"; sourceTree = SOURCE_ROOT; };
+		51B0B33D19DA8FBB004C7FDA /* KFAMGridGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMGridGenerator.h; sourceTree = "<group>"; };
+		51B0B33E19DA8FBB004C7FDA /* KFAMGridGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridGenerator.m; sourceTree = "<group>"; };
+		51B0B34119DB2EEB004C7FDA /* ocmock-3.1.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ocmock-3.1.dmg"; path = "../ocmock-3.1.dmg"; sourceTree = "<group>"; };
+		51B0B34319DB3013004C7FDA /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../ocmock/iOS/libOCMock.a; sourceTree = "<group>"; };
 		51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RelaxingMusic.mp3; sourceTree = "<group>"; };
 		51F2CDCC19CE283100871880 /* KFAMGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMGridModel.h; sourceTree = "<group>"; };
 		51F2CDCD19CE283100871880 /* KFAMGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridModel.m; sourceTree = "<group>"; };
@@ -87,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51B0B34419DB3013004C7FDA /* libOCMock.a in Frameworks */,
 				518468E919C6496900243F0B /* CoreGraphics.framework in Frameworks */,
 				518468EB19C6496900243F0B /* UIKit.framework in Frameworks */,
 				518468E719C6496900243F0B /* Foundation.framework in Frameworks */,
@@ -97,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51B0B34519DB30B0004C7FDA /* libOCMock.a in Frameworks */,
 				5184690619C6496A00243F0B /* XCTest.framework in Frameworks */,
 				5184690819C6496A00243F0B /* UIKit.framework in Frameworks */,
 				5184690719C6496A00243F0B /* Foundation.framework in Frameworks */,
@@ -128,6 +140,8 @@
 		518468E519C6496900243F0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				51B0B34319DB3013004C7FDA /* libOCMock.a */,
+				51B0B34119DB2EEB004C7FDA /* ocmock-3.1.dmg */,
 				518468E619C6496900243F0B /* Foundation.framework */,
 				518468E819C6496900243F0B /* CoreGraphics.framework */,
 				518468EA19C6496900243F0B /* UIKit.framework */,
@@ -145,6 +159,8 @@
 				51F2CDD019CE302000871880 /* KFAMNumPadView.m */,
 				5184691B19C6499300243F0B /* KFAMGridView.h */,
 				5184691C19C6499300243F0B /* KFAMGridView.m */,
+				51B0B33D19DA8FBB004C7FDA /* KFAMGridGenerator.h */,
+				51B0B33E19DA8FBB004C7FDA /* KFAMGridGenerator.m */,
 				518468F619C6496A00243F0B /* KFAMAppDelegate.m */,
 				51F2CDCC19CE283100871880 /* KFAMGridModel.h */,
 				51F2CDCD19CE283100871880 /* KFAMGridModel.m */,
@@ -172,6 +188,8 @@
 		5184690B19C6496A00243F0B /* Sudoku GridTests */ = {
 			isa = PBXGroup;
 			children = (
+				51B0B33A19DA8249004C7FDA /* KFAMMockGridModel.h */,
+				51B0B33B19DA8249004C7FDA /* KFAMMockGridModel.m */,
 				5184691119C6496A00243F0B /* Sudoku_GridTests.m */,
 				5184690C19C6496A00243F0B /* Supporting Files */,
 			);
@@ -198,6 +216,7 @@
 				518468E019C6496900243F0B /* Frameworks */,
 				518468E119C6496900243F0B /* Resources */,
 				51F2CDCA19CE214700871880 /* ShellScript */,
+				51B0B34019DB2CB0004C7FDA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -285,6 +304,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		51B0B34019DB2CB0004C7FDA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/Users/wpsnewbie/Development/XcodeCoverage-master/exportenv.sh";
+		};
 		51F2CDCA19CE214700871880 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,8 +352,10 @@
 			files = (
 				518468FD19C6496A00243F0B /* KFAMViewController.m in Sources */,
 				5184691D19C6499300243F0B /* KFAMGridView.m in Sources */,
+				51B0B33F19DA8FBB004C7FDA /* KFAMGridGenerator.m in Sources */,
 				51F2CDD119CE302000871880 /* KFAMNumPadView.m in Sources */,
 				518468F319C6496A00243F0B /* main.m in Sources */,
+				51B0B33C19DA8249004C7FDA /* KFAMMockGridModel.m in Sources */,
 				518468F719C6496A00243F0B /* KFAMAppDelegate.m in Sources */,
 				51F2CDCE19CE283100871880 /* KFAMGridModel.m in Sources */,
 			);
@@ -393,6 +427,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -453,6 +489,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sudoku Grid/Sudoku Grid-Prefix.pch";
 				INFOPLIST_FILE = "Sudoku Grid/Sudoku Grid-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/wpsnewbie/Development/ocmock/iOS,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -466,6 +506,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sudoku Grid/Sudoku Grid-Prefix.pch";
 				INFOPLIST_FILE = "Sudoku Grid/Sudoku Grid-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/wpsnewbie/Development/ocmock/iOS,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -486,7 +530,23 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/wpsnewbie/Development/Sudoku,
+					"\\Grid/usr/include",
+				);
 				INFOPLIST_FILE = "Sudoku GridTests/Sudoku GridTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/wpsnewbie/Development/ocmock/iOS,
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -504,7 +564,23 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sudoku Grid/Sudoku Grid-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/wpsnewbie/Development/Sudoku,
+					"\\Grid/usr/include",
+				);
 				INFOPLIST_FILE = "Sudoku GridTests/Sudoku GridTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/wpsnewbie/Development/ocmock/iOS,
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

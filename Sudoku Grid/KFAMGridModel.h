@@ -29,4 +29,5 @@
 - (void)makeNewGame;
 
 - (BOOL)checkSolution;
+
 @end

@@ -22,6 +22,7 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     _gridModel = [KFAMGridModel alloc];
+    [_gridModel initialize];
 }
 
 - (void)tearDown
@@ -46,7 +47,8 @@
 - (void)test_isMutableForRow
 {
     XCTAssertTrue([_gridModel isMutableForRow:0 andCol:1], @"Checking a sample true value");
-    XCTAssertTrue(![_gridModel isMutableForRow:0  andCol:0], @"Checking a sample false value");
+    NSLog(@"value at 0 2 is %d, 0 0 is %d", [_gridModel getNumberWithRow:0 andCol:0], [_gridModel getNumberWithRow:0 andCol:2]);
+    XCTAssertTrue(!([_gridModel isMutableForRow:0  andCol:2]), @"Checking a sample false value");
 }
 
 - (void)test_inputNumber
@@ -57,5 +59,26 @@
     [_gridModel inputNumber:numToInput atRow:1 andCol:0];
     XCTAssertTrue([_gridModel getNumberWithRow:1 andCol:0] == numToInput, @"Checking that a valid number was inputed");
 }
+
+
+//- (void)getGrid:(NSMutableArray*) grid {
+//    [_gridModel getGrid:_grid];
+//    
+//}
+
+- (void)getNewGrid:(NSMutableArray*) grid {
+    
+}
+
+- (void)makeNewGame {
+    
+}
+
+//-(BOOL)checkSolution {
+//    
+//}
+
+
+
 
 @end
