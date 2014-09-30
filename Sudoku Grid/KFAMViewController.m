@@ -76,14 +76,6 @@
     int row = num/9;
     int col = num%9;
     
-    NSLog(@"You pressed the button at row %d, column %d!", row,col);
-    NSLog(@"GRID:");
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            NSLog(@"[%d][%d] : %d:", i, j, [_gridModel getNumberWithRow:i andCol:j]);
-        }
-    }
-    
     int currentNumSelected = [_numPad getCurrentNumSelected];
     BOOL isMutable = [_gridModel isMutableForRow:row andCol:col];
     BOOL isValid = [_gridModel isValidValue:currentNumSelected forRow:row andCol:col];
@@ -99,8 +91,6 @@
         UIColor * color = [UIColor colorWithRed:52/255.0f green:137/255.0f blue:56/255.0f alpha:1.0f];
         [_grid displayNumber:0 atRow:row andCol:col andColor:color];
     }
-    
-    
 }
 
 - (void)addMenuOptions:(CGRect)frame {

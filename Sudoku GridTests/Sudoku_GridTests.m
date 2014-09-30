@@ -68,9 +68,14 @@
 
 - (void)test_isMutableForRow
 {
-    XCTAssertTrue([_gridModel isMutableForRow:0 andCol:1], @"Checking a sample true value");
-    NSLog(@"value at 0 2 is %d, 0 0 is %d", [_gridModel getNumberWithRow:0 andCol:0], [_gridModel getNumberWithRow:0 andCol:2]);
-    XCTAssertTrue(!([_gridModel isMutableForRow:0  andCol:2]), @"Checking a sample false value");
+    [_gridModel makeNewGame];
+    int sampleMutableIndex = 82;
+    for (int i = 0; i < 81; i++) {
+        if ([_gridModel getNumberWithRow:i/9 andCol:i%9] == 0) {
+            sampleMutableIndex = i;
+        }
+    }
+    XCTAssertTrue([_gridModel isMutableForRow:sampleMutableIndex/9 andCol:sampleMutableIndex%9], @"Checking a sample true value");
 }
 
 - (void)test_inputNumber

@@ -41,41 +41,6 @@
     return value.intValue;
 }
 
-//- (void)getGrid:(NSMutableArray*) grid {
-//    int randomNumber = random()%30000;
-//    int firstValue = randomNumber - (randomNumber % 82);
-//
-//    for (int i = 0; i < 81; i++) {
-//        NSNumber* numToInput = [NSNumber numberWithInt:[charToInput intValue]];
-//        if ([charToInput  isEqual: @"."]) {
-//            NSNumber* zero = [NSNumber numberWithInt:0];
-//            [grid insertObject:zero atIndex:i];
-//        } else{
-//            [grid insertObject:numToInput atIndex:i];
-//
-//        }
-//        
-//    }
-//}
-//
-//- (void)getNewGrid:(NSMutableArray*) grid {
-//    int randomNumber = random()%30000;
-//    int firstValue = randomNumber - (randomNumber % 82);
-//    
-//    for (int i = 0; i < 81; i++) {
-//        NSString* charToInput = [_readString substringWithRange:NSMakeRange(firstValue+i, 1)];
-//        NSNumber* numToInput = [NSNumber numberWithInt:[charToInput intValue]];
-//        if ([charToInput  isEqual: @"."]) {
-//            NSNumber* zero = [NSNumber numberWithInt:0];
-//            [grid replaceObjectAtIndex:i withObject:zero];
-//        } else{
-//            [grid replaceObjectAtIndex:i withObject:numToInput];
-//            
-//        }
-//        
-//    }
-//}
-
 - (BOOL)isValidValue:(int)val
                    forRow:(int)row
                    andCol:(int)col {

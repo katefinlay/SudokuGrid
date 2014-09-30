@@ -110,7 +110,6 @@
               atRow:(int)row
              andCol:(int)col
              andColor:(UIColor*)color {
-    NSLog(@"in display number, trying to show %d at %d %d", newNum, row, col);
     UIButton* currentButton = [self getCellWithRow:row andCol:col];
     [currentButton setTitleColor:color forState:UIControlStateNormal];
     [currentButton setTitle:[NSString stringWithFormat:@"%d", newNum] forState:UIControlStateNormal];
@@ -118,22 +117,5 @@
         [currentButton setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
     }
 }
-
-//- (void)setValueForCellAtRow:(int)row
-//                      andCol:(int)col
-//                   withValue:(int)value {
-//    
-//    UIButton* cell = [self getCellWithRow:row andCol:col];
-//    
-//    //retrieve the proper number
-//    NSString* numToFill;
-//    if (value == 0) {
-//        numToFill = @"";
-//    } else {
-//        numToFill = [NSString stringWithFormat:@"%d", value];
-//    }
-//    
-//    [cell setTitle:numToFill forState:UIControlStateNormal];
-//}
 
 @end

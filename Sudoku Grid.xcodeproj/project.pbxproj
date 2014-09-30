@@ -166,8 +166,8 @@
 				51F2CDCD19CE283100871880 /* KFAMGridModel.m */,
 				518468F819C6496A00243F0B /* Main.storyboard */,
 				518468FB19C6496A00243F0B /* KFAMViewController.h */,
-				51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */,
 				518468FC19C6496A00243F0B /* KFAMViewController.m */,
+				51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */,
 				518468FE19C6496A00243F0B /* Images.xcassets */,
 				518468ED19C6496A00243F0B /* Supporting Files */,
 			);
