@@ -36,6 +36,7 @@
 		5184691019C6496A00243F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5184690E19C6496A00243F0B /* InfoPlist.strings */; };
 		5184691219C6496A00243F0B /* Sudoku_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691119C6496A00243F0B /* Sudoku_GridTests.m */; };
 		5184691D19C6499300243F0B /* KFAMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5184691C19C6499300243F0B /* KFAMGridView.m */; };
+		51C910A019DA639400D33FED /* RelaxingMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */; };
 		51F2CDCE19CE283100871880 /* KFAMGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDCD19CE283100871880 /* KFAMGridModel.m */; };
 		51F2CDD119CE302000871880 /* KFAMNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F2CDD019CE302000871880 /* KFAMNumPadView.m */; };
 		51FCFECF19D4C585008D3CB5 /* grid2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51FCFECE19D4C584008D3CB5 /* grid2.txt */; };
@@ -73,6 +74,7 @@
 		5184691119C6496A00243F0B /* Sudoku_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sudoku_GridTests.m; sourceTree = "<group>"; };
 		5184691B19C6499300243F0B /* KFAMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KFAMGridView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		5184691C19C6499300243F0B /* KFAMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KFAMGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RelaxingMusic.mp3; sourceTree = "<group>"; };
 		51F2CDCC19CE283100871880 /* KFAMGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMGridModel.h; sourceTree = "<group>"; };
 		51F2CDCD19CE283100871880 /* KFAMGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAMGridModel.m; sourceTree = "<group>"; };
 		51F2CDCF19CE302000871880 /* KFAMNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAMNumPadView.h; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				51F2CDCD19CE283100871880 /* KFAMGridModel.m */,
 				518468F819C6496A00243F0B /* Main.storyboard */,
 				518468FB19C6496A00243F0B /* KFAMViewController.h */,
+				51C9109F19DA639400D33FED /* RelaxingMusic.mp3 */,
 				518468FC19C6496A00243F0B /* KFAMViewController.m */,
 				518468FE19C6496A00243F0B /* Images.xcassets */,
 				518468ED19C6496A00243F0B /* Supporting Files */,
@@ -266,6 +269,7 @@
 				518468FF19C6496A00243F0B /* Images.xcassets in Resources */,
 				518468F119C6496A00243F0B /* InfoPlist.strings in Resources */,
 				518468FA19C6496A00243F0B /* Main.storyboard in Resources */,
+				51C910A019DA639400D33FED /* RelaxingMusic.mp3 in Resources */,
 				51FCFECF19D4C585008D3CB5 /* grid2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

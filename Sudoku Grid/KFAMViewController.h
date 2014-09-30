@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface KFAMViewController : UIViewController
+
+@property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
 
 @end

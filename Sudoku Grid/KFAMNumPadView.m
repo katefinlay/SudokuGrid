@@ -37,15 +37,15 @@
 */
 
 - (void)makeButtonsWithFrame:(CGRect)frame {
-    _numbers = [[NSMutableArray alloc] initWithCapacity:9];
+    _numbers = [[NSMutableArray alloc] initWithCapacity:10];
     
     // Each button is 1/12 of the total frame size, the remaining 1/6 is divided between
     // large and small boundaries. Large boundaries are 1/24 of the total frame and small
     // boundaries are 1/72 of the total frame area.
     
-    CGFloat buttonSize = frame.size.width/10;
+    CGFloat buttonSize = frame.size.width/11;
     CGFloat yPosition = (frame.size.height - buttonSize)/2;
-    CGFloat boundary = frame.size.width/100;
+    CGFloat boundary = frame.size.width/121;
     NSLog(@"Frame location is %f, %f", frame.origin.x, frame.origin.y);
     
     //create numPad view
@@ -53,7 +53,7 @@
     int currentTag = 0;
     CGFloat offset = 0;
     
-    for (int c = 0; c < 9; c++) {
+    for (int c = 0; c < 10; c++) {
         offset = offset + boundary;
         UIButton* button;
         CGRect buttonFrame = CGRectMake(offset, yPosition, buttonSize, buttonSize);
@@ -66,6 +66,11 @@
         
         offset = offset + buttonSize;
     }
+    
+    UIButton* clearButton = [_numbers objectAtIndex:9];
+    [clearButton setTitle:[NSString stringWithFormat:@"Clear"] forState:UIControlStateNormal];
+    
+    
 }
 
 - (void)createButton:(UIButton*) button
@@ -79,7 +84,7 @@
     [button setBackgroundColor:[UIColor whiteColor]];
     
     [button setTitle:[NSString stringWithFormat:@"%d", tag + 1] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     button.showsTouchWhenHighlighted = YES;
     button.tag = tag;

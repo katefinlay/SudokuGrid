@@ -27,4 +27,6 @@
              andCol:(int)col;
 
 - (void)makeNewGame;
+
+- (BOOL)checkSolution;
 @end

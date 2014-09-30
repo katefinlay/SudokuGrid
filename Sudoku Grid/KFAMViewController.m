@@ -24,47 +24,49 @@
 
 @implementation KFAMViewController
 
-
-
 - (void)viewDidLoad {
+    
+    NSURL *musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"RelaxingMusic" ofType:@"mp3"]];
+    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [audioPlayer play];
     
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    //Make the background a light green
+    UIColor * color = [UIColor colorWithRed:136/255.0f green:169/255.0f blue:121/255.0f alpha:1.5f];
+    self.view.backgroundColor = color;
     
+    //create app frame
     CGRect frame = self.view.frame;
-    
+    //create grid frame. Width is 8/10 of screen size
     CGFloat x = CGRectGetWidth(frame)*.1;
     CGFloat y = CGRectGetHeight(frame)*.15;
     CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.8;
-    
     CGRect gridFrame = CGRectMake(x, y, size, size);
+    //create num pad frame with equally spaced buttons
     CGRect numPadFrame = CGRectMake(x, y + size + size*0.12, size, size*0.12);
 
+    //Initialize and set up other classes
     _grid = [[KFAMGridView alloc] initWithFrame:gridFrame];
     _gridModel = [KFAMGridModel alloc];
     [_gridModel initialize];
     _numPad = [[KFAMNumPadView alloc] initWithFrame:numPadFrame];
-    
-    
     [_grid setAction:@selector(buttonPressed:) withTarget:self];
     
     [self.view addSubview:_grid];
     [self.view addSubview:_numPad];
     [self addMenuOptions:frame];
     
-    
     //set the initial values for the sudoku grid
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             int toInsert = [_gridModel getNumberWithRow:c andCol:r];
-            //[_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
             [_grid displayNumber:toInsert atRow:c andCol:r andColor:[UIColor blackColor]];
         }
     }
-
-    
-    
 }
 
 -(void)buttonPressed:(NSNumber*)buttonTag {
@@ -86,9 +88,16 @@
     BOOL isMutable = [_gridModel isMutableForRow:row andCol:col];
     BOOL isValid = [_gridModel isValidValue:currentNumSelected forRow:row andCol:col];
     
-    if (isMutable && isValid) {
+    if (isMutable && isValid && currentNumSelected != 10) {
         [_gridModel inputNumber:currentNumSelected atRow:row andCol:col];
-        [_grid displayNumber:currentNumSelected atRow:row andCol:col andColor:[UIColor blueColor]];
+        UIColor * color = [UIColor colorWithRed:52/255.0f green:137/255.0f blue:56/255.0f alpha:1.0f];
+        [_grid displayNumber:currentNumSelected atRow:row andCol:col andColor:color];
+        
+    } else if (currentNumSelected == 10 && isMutable) {
+        //The 10th button is the clear button, input a 0
+        [_gridModel inputNumber:0 atRow:row andCol:col];
+        UIColor * color = [UIColor colorWithRed:52/255.0f green:137/255.0f blue:56/255.0f alpha:1.0f];
+        [_grid displayNumber:0 atRow:row andCol:col andColor:color];
     }
     
     
@@ -116,9 +125,9 @@
     [_restartGameButton setTitle:[NSString stringWithFormat:@"Restart Game"] forState:UIControlStateNormal];
     [_verifySolutionButton setTitle:[NSString stringWithFormat:@"Check Solution"] forState:UIControlStateNormal];
     
-    [_newGameButton setBackgroundColor:[UIColor redColor]];
-    [_restartGameButton setBackgroundColor:[UIColor redColor]];
-    [_verifySolutionButton setBackgroundColor:[UIColor redColor]];
+    [_newGameButton setBackgroundColor:[UIColor whiteColor]];
+    [_restartGameButton setBackgroundColor:[UIColor whiteColor]];
+    [_verifySolutionButton setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:_newGameButton];
     [self.view addSubview:_restartGameButton];
@@ -126,11 +135,28 @@
 }
 
 - (void)newGameButtonPressed:(id)sender {
+    [self showConfirmNewGameAlert];
+}
+
+- (IBAction)showConfirmNewGameAlert {
+    
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:[NSString stringWithFormat:@"Confirm New Game"]
+                              message:[NSString stringWithFormat:@"Sure you want to start a new game?"]
+                              delegate:self
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:nil];
+    [alertView addButtonWithTitle:@"Yes"];
+    [alertView setTag:1];
+    
+    [alertView show];
+}
+
+- (void)newGameButtonConfirmed {
     [_gridModel makeNewGame];
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             int toInsert = [_gridModel getNumberWithRow:c andCol:r];
-            //[_grid setValueForCellAtRow:c andCol:r withValue:toInsert];
             [_grid displayNumber:toInsert atRow:c andCol:r andColor:[UIColor blackColor]];
         }
     }
@@ -138,11 +164,30 @@
 }
 
 - (void)restartGameButtonPressed:(id)sender {
+    [self showConfirmRestartAlert];
+}
+
+- (IBAction)showConfirmRestartAlert {
+    
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:[NSString stringWithFormat:@"Confirm Restart Game"]
+                              message:[NSString stringWithFormat:@"Sure you want to restart?"]
+                              delegate:self
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:nil];
+    [alertView addButtonWithTitle:@"Yes"];
+    [alertView setTag:2];
+    
+    [alertView show];
+}
+
+- (void)restartButtonConfirmed {
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             if ([_gridModel isMutableForRow:r andCol:c]) {
                 [_gridModel inputNumber:0 atRow:r andCol:c];
-                [_grid displayNumber:0 atRow:r andCol:c andColor:[UIColor blueColor]];
+                UIColor * color = [UIColor colorWithRed:52/255.0f green:137/255.0f blue:56/255.0f alpha:1.0f];
+                [_grid displayNumber:0 atRow:r andCol:c andColor:color];
             }
         }
     }
@@ -150,8 +195,54 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView tag] == 1) {
+        if (buttonIndex == 1) {
+            [self newGameButtonConfirmed];
+        }
+    } else if ([alertView tag] == 2) {
+        if (buttonIndex == 1) {
+            [self restartButtonConfirmed];
+        }
+    }
+    if (buttonIndex == 1) {
+        [self restartButtonConfirmed];
+    }
+}
+
 - (void)verifySolutionButtonPressed:(id)sender {
+    BOOL isCorrectSolution = [_gridModel checkSolution];
+    if (isCorrectSolution) {
+        [self showWinAlert];
+    } else {
+        [self showNotWinAlert];
+    }
     
+    
+}
+
+- (IBAction)showWinAlert {
+    
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:[NSString stringWithFormat:@"Congratulations!"]
+                              message:[NSString stringWithFormat:@"You won the game!"]
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+    
+    [alertView show];
+}
+
+- (IBAction)showNotWinAlert {
+    
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:[NSString stringWithFormat:@"Sorry"]
+                              message:[NSString stringWithFormat:@"This is not a correct solution. Keep trying!"]
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+    
+    [alertView show];
 }
 
 - (void)didReceiveMemoryWarning {
